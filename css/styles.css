@@ -1,14 +1,16 @@
 /* Custom Styles for Biomec */
 
 :root {
-    --primary-color: #0d6efd;
-    --secondary-color: #6c757d;
-    --success-color: #198754;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --info-color: #0dcaf0;
+    --primary-color: #3A6E79;
+    --secondary-color: #76B79E;
+    --tertiary-color: #2C549C;
+    --neutral-color: #808183;
+    --dark-color: #1D1D1B;
+    --success-color: #76B79E;
+    --warning-color: #76B79E;
+    --danger-color: #3A6E79;
+    --info-color: #2C549C;
     --light-color: #f8f9fa;
-    --dark-color: #212529;
 }
 
 /* Global Styles */
@@ -29,6 +31,28 @@ body {
     letter-spacing: 1px;
 }
 
+/* Logo styles */
+.logo-navbar {
+    height: 40px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.brand-text {
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+@media (max-width: 768px) {
+    .logo-navbar {
+        height: 35px;
+    }
+    
+    .brand-text {
+        font-size: 1.2rem;
+    }
+}
+
 .nav-link {
     transition: color 0.3s ease;
     font-weight: 500;
@@ -40,7 +64,7 @@ body {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0a58ca 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--tertiary-color) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -59,6 +83,37 @@ body {
 .hero-image {
     text-align: center;
     animation: float 3s ease-in-out infinite;
+}
+
+/* Hero Logo Styles */
+.hero-logo-container {
+    position: relative;
+}
+
+.hero-logo {
+    max-width: 200px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+.hero-icon {
+    opacity: 0.7;
+}
+
+@keyframes logoGlow {
+    0% { 
+        filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(118, 183, 158, 0.5));
+    }
+    100% { 
+        filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(118, 183, 158, 0.8));
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-logo {
+        max-width: 150px;
+    }
 }
 
 @keyframes float {
@@ -155,7 +210,7 @@ body {
 }
 
 .social-links a:hover {
-    color: var(--warning-color) !important;
+    color: var(--secondary-color) !important;
     transform: translateY(-3px);
 }
 
@@ -206,12 +261,12 @@ section {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #0a58ca;
+    background: var(--tertiary-color);
 }
 
 /* Gradient Text */
 .gradient-text {
-    background: linear-gradient(45deg, var(--primary-color), var(--warning-color));
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -225,4 +280,158 @@ section {
     border-radius: 25px;
     font-weight: 500;
     font-size: 0.9rem;
+}
+
+/* Bootstrap Color Overrides */
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--tertiary-color);
+    border-color: var(--tertiary-color);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.text-success {
+    color: var(--secondary-color) !important;
+}
+
+.text-warning {
+    color: var(--secondary-color) !important;
+}
+
+.btn-warning {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.text-info {
+    color: var(--tertiary-color) !important;
+}
+
+.text-danger {
+    color: var(--primary-color) !important;
+}
+
+/* Navigation hover effects */
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+}
+
+/* Navbar background with new color */
+.navbar {
+    background-color: var(--primary-color) !important;
+}
+
+/* Contact section background */
+.bg-dark {
+    background-color: var(--dark-color) !important;
+}
+
+/* Contact form styling with brand colors */
+.contact-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(118, 183, 158, 0.25);
+    color: white;
+}
+
+.contact-form .form-control:focus ~ label,
+.contact-form .form-control:not(:placeholder-shown) ~ label {
+    color: var(--secondary-color);
+}
+
+/* Icons in contact section with brand colors */
+.contact-section .display-6 {
+    color: var(--secondary-color) !important;
+}
+
+/* Statistics colors */
+.about-stats h3.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.about-stats h3.text-success {
+    color: var(--secondary-color) !important;
+}
+
+.about-stats h3.text-warning {
+    color: var(--tertiary-color) !important;
+}
+
+/* Custom accent classes */
+.text-accent {
+    color: var(--secondary-color) !important;
+}
+
+.btn-accent {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-accent:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.bg-accent {
+    background-color: var(--secondary-color) !important;
+}
+
+.text-tertiary {
+    color: var(--tertiary-color) !important;
+}
+
+/* Footer Logo Styles */
+.logo-footer {
+    height: 30px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+/* About Section Logo */
+.about-brand-logo {
+    height: 60px;
+    width: auto;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.about-content:hover .about-brand-logo {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .about-brand-logo {
+        height: 50px;
+    }
 }
