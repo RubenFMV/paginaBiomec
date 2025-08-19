@@ -1,15 +1,15 @@
 /* Custom Styles for Biomec */
 
 :root {
-    --primary-color: #3A6E79;
-    --secondary-color: #76B79E;
-    --tertiary-color: #2C549C;
-    --neutral-color: #808183;
-    --dark-color: #1D1D1B;
-    --success-color: #76B79E;
-    --warning-color: #76B79E;
-    --danger-color: #3A6E79;
-    --info-color: #2C549C;
+    --primary-color: #1C3757;      /* Azul Oscuro - Confianza y Profesionalismo */
+    --secondary-color: #128362;    /* Verde Azulado - Salud y Precisión */
+    --tertiary-color: #60B543;     /* Verde Claro - Vitalidad e Innovación */
+    --neutral-dark: #3A3A3A;       /* Gris Carbón - Elegancia y Sobriedad */
+    --neutral-light: #D4D4D4;      /* Gris Claro - Minimalismo y Tecnología */
+    --success-color: #128362;
+    --warning-color: #60B543;
+    --danger-color: #1C3757;
+    --info-color: #128362;
     --light-color: #f8f9fa;
 }
 
@@ -36,6 +36,7 @@ body {
     height: 40px;
     width: auto;
     transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
 .brand-text {
@@ -64,7 +65,7 @@ body {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--tertiary-color) 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -93,8 +94,9 @@ body {
 .hero-logo {
     max-width: 200px;
     height: auto;
-    filter: brightness(0) invert(1);
+    opacity: 0.9;
     animation: logoGlow 2s ease-in-out infinite alternate;
+    border-radius: 8px;
 }
 
 .hero-icon {
@@ -103,10 +105,14 @@ body {
 
 @keyframes logoGlow {
     0% { 
-        filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(118, 183, 158, 0.5));
+        opacity: 0.9;
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(96, 181, 67, 0.3);
     }
     100% { 
-        filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(118, 183, 158, 0.8));
+        opacity: 1;
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(96, 181, 67, 0.5);
     }
 }
 
@@ -114,6 +120,25 @@ body {
     .hero-logo {
         max-width: 150px;
     }
+    
+    .hero-icons {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .hero-icon-item {
+        margin: 0 auto;
+    }
+}
+
+/* Hero icon items styling */
+.hero-icon-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.hero-icon-item:hover {
+    transform: translateY(-5px);
 }
 
 @keyframes float {
@@ -210,7 +235,7 @@ body {
 }
 
 .social-links a:hover {
-    color: var(--secondary-color) !important;
+    color: var(--tertiary-color) !important;
     transform: translateY(-3px);
 }
 
@@ -261,12 +286,12 @@ section {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--tertiary-color);
+    background: var(--secondary-color);
 }
 
 /* Gradient Text */
 .gradient-text {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(45deg, var(--primary-color), var(--tertiary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -297,8 +322,8 @@ section {
 }
 
 .btn-primary:hover {
-    background-color: var(--tertiary-color);
-    border-color: var(--tertiary-color);
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
 }
 
 .btn-outline-primary {
@@ -316,23 +341,23 @@ section {
 }
 
 .text-warning {
-    color: var(--secondary-color) !important;
+    color: var(--tertiary-color) !important;
 }
 
 .btn-warning {
+    background-color: var(--tertiary-color);
+    border-color: var(--tertiary-color);
+    color: white;
+}
+
+.btn-warning:hover {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     color: white;
 }
 
-.btn-warning:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
-}
-
 .text-info {
-    color: var(--tertiary-color) !important;
+    color: var(--secondary-color) !important;
 }
 
 .text-danger {
@@ -341,7 +366,7 @@ section {
 
 /* Navigation hover effects */
 .nav-link:hover {
-    color: var(--secondary-color) !important;
+    color: var(--tertiary-color) !important;
 }
 
 /* Navbar background with new color */
@@ -351,25 +376,25 @@ section {
 
 /* Contact section background */
 .bg-dark {
-    background-color: var(--dark-color) !important;
+    background-color: var(--neutral-dark) !important;
 }
 
 /* Contact form styling with brand colors */
 .contact-form .form-control:focus {
     background: rgba(255, 255, 255, 0.15);
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 0.2rem rgba(118, 183, 158, 0.25);
+    border-color: var(--tertiary-color);
+    box-shadow: 0 0 0 0.2rem rgba(96, 181, 67, 0.25);
     color: white;
 }
 
 .contact-form .form-control:focus ~ label,
 .contact-form .form-control:not(:placeholder-shown) ~ label {
-    color: var(--secondary-color);
+    color: var(--tertiary-color);
 }
 
 /* Icons in contact section with brand colors */
 .contact-section .display-6 {
-    color: var(--secondary-color) !important;
+    color: var(--tertiary-color) !important;
 }
 
 /* Statistics colors */
@@ -387,34 +412,58 @@ section {
 
 /* Custom accent classes */
 .text-accent {
-    color: var(--secondary-color) !important;
+    color: var(--tertiary-color) !important;
 }
 
 .btn-accent {
+    background-color: var(--tertiary-color);
+    border-color: var(--tertiary-color);
+    color: white;
+}
+
+.btn-accent:hover {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     color: white;
 }
 
-.btn-accent:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
-}
-
 .bg-accent {
-    background-color: var(--secondary-color) !important;
+    background-color: var(--tertiary-color) !important;
 }
 
 .text-tertiary {
-    color: var(--tertiary-color) !important;
+    color: var(--secondary-color) !important;
+}
+
+/* Additional typography styles with new colors */
+.text-neutral-dark {
+    color: var(--neutral-dark) !important;
+}
+
+.text-neutral-light {
+    color: var(--neutral-light) !important;
+}
+
+.bg-neutral-light {
+    background-color: var(--neutral-light) !important;
+}
+
+.border-accent {
+    border-color: var(--tertiary-color) !important;
+}
+
+/* Improved section backgrounds */
+.section-bg-light {
+    background-color: #f8f9fa;
+    border-top: 3px solid var(--neutral-light);
 }
 
 /* Footer Logo Styles */
 .logo-footer {
     height: 30px;
     width: auto;
-    filter: brightness(0) invert(1);
+    border-radius: 4px;
+    opacity: 0.9;
 }
 
 /* About Section Logo */
@@ -423,6 +472,7 @@ section {
     width: auto;
     opacity: 0.8;
     transition: all 0.3s ease;
+    border-radius: 6px;
 }
 
 .about-content:hover .about-brand-logo {

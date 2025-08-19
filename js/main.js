@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
-            navbar.style.backgroundColor = 'rgba(58, 110, 121, 0.95)';
+            navbar.style.backgroundColor = 'rgba(28, 55, 87, 0.95)';
             navbar.style.backdropFilter = 'blur(10px)';
         } else {
-            navbar.style.backgroundColor = 'rgba(58, 110, 121, 1)';
+            navbar.style.backgroundColor = 'rgba(28, 55, 87, 1)';
             navbar.style.backdropFilter = 'none';
         }
     });
