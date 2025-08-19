@@ -50,6 +50,10 @@ body {
     }
     
     /* Hero section mobile improvements */
+    .hero-section {
+        padding-top: 70px; /* Navbar más pequeño en móvil */
+    }
+    
     .hero-section h1 {
         font-size: 2.2rem !important;
         line-height: 1.2;
@@ -67,6 +71,10 @@ body {
 }
 
 @media (max-width: 576px) {
+    .hero-section {
+        padding-top: 65px; /* Aún más pequeño en móviles */
+    }
+    
     .hero-section h1 {
         font-size: 1.8rem !important;
         line-height: 1.1;
@@ -99,6 +107,7 @@ body {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     position: relative;
     overflow: hidden;
+    padding-top: 80px; /* Espacio para el navbar fixed */
 }
 
 .hero-section::before {
