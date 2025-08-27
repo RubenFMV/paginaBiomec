@@ -1,0 +1,654 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "lastUpdated": "2025-08-27",
+    "totalProducts": 12,
+    "description": "Base de datos de productos BIMEG - Refacciones Biomédicas"
+  },
+  "categories": [
+    {
+      "id": "anestesia",
+      "name": "Máquinas de Anestesia",
+      "description": "Refacciones para equipos de anestesia"
+    },
+    {
+      "id": "esterilizacion",
+      "name": "Esterilizadores y Autoclaves",
+      "description": "Componentes para equipos de esterilización"
+    },
+    {
+      "id": "monitoreo",
+      "name": "Equipos de Monitoreo",
+      "description": "Refacciones para monitores de signos vitales"
+    },
+    {
+      "id": "respiratorio",
+      "name": "Equipos Respiratorios",
+      "description": "Componentes para equipos de ventilación"
+    },
+    {
+      "id": "cirugia",
+      "name": "Equipos de Cirugía",
+      "description": "Refacciones para equipos quirúrgicos"
+    }
+  ],
+  "brands": [
+    {
+      "id": "drager",
+      "name": "Dräger",
+      "country": "Alemania"
+    },
+    {
+      "id": "philips",
+      "name": "Philips",
+      "country": "Países Bajos"
+    },
+    {
+      "id": "ge",
+      "name": "GE Healthcare",
+      "country": "Estados Unidos"
+    },
+    {
+      "id": "medtronic",
+      "name": "Medtronic",
+      "country": "Estados Unidos"
+    },
+    {
+      "id": "siemens",
+      "name": "Siemens",
+      "country": "Alemania"
+    },
+    {
+      "id": "mindray",
+      "name": "Mindray",
+      "country": "China"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "code": "VAL-001",
+      "name": "Válvula de Alivio de Presión",
+      "shortDescription": "Válvula de seguridad para máquinas de anestesia",
+      "fullDescription": "Válvula de seguridad para máquinas de anestesia, garantiza presión óptima en el circuito respiratorio. Fabricada con materiales de grado médico que cumplen con estándares internacionales de seguridad.",
+      "category": "anestesia",
+      "brand": "drager",
+      "image": "bi-gear-fill",
+      "price": {
+        "currency": "MXN",
+        "amount": 2500,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Presión": "0-70 cmH2O",
+        "Material": "Latón médico",
+        "Compatibilidad": "Universal",
+        "Certificación": "ISO 13485",
+        "Peso": "150g"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 25,
+        "leadTime": "24-48 horas",
+        "supplier": "Distribuidor autorizado"
+      },
+      "compatibility": [
+        "Dräger Fabius Series",
+        "Dräger Primus",
+        "Equipos compatibles universales"
+      ],
+      "documents": [
+        {
+          "type": "manual",
+          "name": "Manual de instalación",
+          "url": "/docs/VAL-001-manual.pdf"
+        },
+        {
+          "type": "certificate",
+          "name": "Certificado de calidad",
+          "url": "/docs/VAL-001-cert.pdf"
+        }
+      ],
+      "tags": ["válvula", "seguridad", "presión", "anestesia"],
+      "featured": true,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2025-01-15",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 2,
+      "code": "SENS-205",
+      "name": "Sensor de Oxígeno O2",
+      "shortDescription": "Sensor galvánico de oxígeno para monitoreo continuo",
+      "fullDescription": "Sensor galvánico de oxígeno para monitoreo continuo en equipos de anestesia y ventilación. Tecnología avanzada que garantiza mediciones precisas y confiables durante procedimientos críticos.",
+      "category": "anestesia",
+      "brand": "philips",
+      "image": "bi-cpu",
+      "price": {
+        "currency": "MXN",
+        "amount": 4200,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Rango": "0-100% O2",
+        "Vida útil": "12-18 meses",
+        "Tiempo respuesta": "<15 segundos",
+        "Precisión": "±2%",
+        "Temperatura operación": "15-40°C"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 15,
+        "leadTime": "3-5 días",
+        "supplier": "Importación directa"
+      },
+      "compatibility": [
+        "Philips IntelliVue Series",
+        "Equipos de anestesia compatibles",
+        "Ventiladores Philips"
+      ],
+      "documents": [
+        {
+          "type": "manual",
+          "name": "Guía de instalación",
+          "url": "/docs/SENS-205-guide.pdf"
+        }
+      ],
+      "tags": ["sensor", "oxígeno", "monitoreo", "precisión"],
+      "featured": false,
+      "newProduct": true,
+      "onSale": false,
+      "createdDate": "2025-06-10",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 3,
+      "code": "CIRC-150",
+      "name": "Circuito Respiratorio Adulto",
+      "shortDescription": "Circuito respiratorio desechable para adultos",
+      "fullDescription": "Circuito respiratorio desechable para adultos, compatible con múltiples marcas de ventiladores. Diseño ergonómico que facilita la ventilación mecánica y mejora la comodidad del paciente.",
+      "category": "respiratorio",
+      "brand": "ge",
+      "image": "bi-lungs",
+      "price": {
+        "currency": "MXN",
+        "amount": 350,
+        "showPrice": true,
+        "priceType": "fijo"
+      },
+      "specifications": {
+        "Longitud": "1.8 metros",
+        "Diámetro": "22/15 mm",
+        "Tipo": "Desechable",
+        "Material": "PVC médico",
+        "Esterilización": "Óxido de etileno"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 200,
+        "leadTime": "24 horas",
+        "supplier": "Stock local"
+      },
+      "compatibility": [
+        "GE Healthcare Ventilators",
+        "Ventiladores universales",
+        "Equipos de anestesia"
+      ],
+      "documents": [
+        {
+          "type": "specification",
+          "name": "Especificaciones técnicas",
+          "url": "/docs/CIRC-150-specs.pdf"
+        }
+      ],
+      "tags": ["circuito", "respiratorio", "ventilación", "desechable"],
+      "featured": false,
+      "newProduct": false,
+      "onSale": true,
+      "salePrice": 315,
+      "createdDate": "2024-11-20",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 4,
+      "code": "JUNTA-089",
+      "name": "Junta de Puerta Autoclave",
+      "shortDescription": "Junta de silicona para puerta de autoclave",
+      "fullDescription": "Junta de silicona para puerta de autoclave, resistente a altas temperaturas y esterilización. Diseñada para garantizar un sellado perfecto y mantener la integridad del proceso de esterilización.",
+      "category": "esterilizacion",
+      "brand": "mindray",
+      "image": "bi-shield-check",
+      "price": {
+        "currency": "MXN",
+        "amount": 1800,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Temperatura": "Hasta 150°C",
+        "Material": "Silicona médica",
+        "Durabilidad": "5000 ciclos",
+        "Resistencia": "Vapor saturado",
+        "Color": "Transparente"
+      },
+      "stock": {
+        "available": false,
+        "quantity": 0,
+        "leadTime": "7-10 días",
+        "supplier": "Pedido especial"
+      },
+      "compatibility": [
+        "Mindray Autoclaves",
+        "Autoclaves verticales",
+        "Modelos compatibles universales"
+      ],
+      "documents": [
+        {
+          "type": "compatibility",
+          "name": "Lista de compatibilidad",
+          "url": "/docs/JUNTA-089-compat.pdf"
+        }
+      ],
+      "tags": ["junta", "autoclave", "silicona", "sellado"],
+      "featured": false,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2024-08-15",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 5,
+      "code": "BOMB-312",
+      "name": "Bomba de Vacío Rotativa",
+      "shortDescription": "Bomba de vacío para sistemas de aspiración médica",
+      "fullDescription": "Bomba de vacío para sistemas de aspiración médica y equipos de esterilización. Motor de alta eficiencia que proporciona vacío constante y confiable para aplicaciones médicas críticas.",
+      "category": "esterilizacion",
+      "brand": "siemens",
+      "image": "bi-gear-wide-connected",
+      "price": {
+        "currency": "MXN",
+        "amount": 15500,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Capacidad": "30 L/min",
+        "Potencia": "0.5 HP",
+        "Nivel vacío": "-700 mmHg",
+        "Voltaje": "220V AC",
+        "Ruido": "<65 dB"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 3,
+        "leadTime": "5-7 días",
+        "supplier": "Distribuidor especializado"
+      },
+      "compatibility": [
+        "Siemens Autoclaves",
+        "Sistemas de vacío médico",
+        "Equipos de aspiración"
+      ],
+      "documents": [
+        {
+          "type": "manual",
+          "name": "Manual de operación",
+          "url": "/docs/BOMB-312-manual.pdf"
+        },
+        {
+          "type": "warranty",
+          "name": "Información de garantía",
+          "url": "/docs/BOMB-312-warranty.pdf"
+        }
+      ],
+      "tags": ["bomba", "vacío", "aspiración", "motor"],
+      "featured": true,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2024-12-05",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 6,
+      "code": "CABLE-445",
+      "name": "Cable ECG 3 Derivaciones",
+      "shortDescription": "Cable para electrocardiograma de 3 derivaciones",
+      "fullDescription": "Cable para electrocardiograma de 3 derivaciones, compatible con monitores de signos vitales. Construcción robusta que garantiza transmisión clara de señales y durabilidad en uso hospitalario.",
+      "category": "monitoreo",
+      "brand": "philips",
+      "image": "bi-activity",
+      "price": {
+        "currency": "MXN",
+        "amount": 850,
+        "showPrice": true,
+        "priceType": "fijo"
+      },
+      "specifications": {
+        "Derivaciones": "3 leads",
+        "Longitud": "3 metros",
+        "Conectores": "Clips metálicos",
+        "Blindaje": "Doble blindaje",
+        "Flexibilidad": "Alta flexibilidad"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 45,
+        "leadTime": "24 horas",
+        "supplier": "Stock local"
+      },
+      "compatibility": [
+        "Philips IntelliVue",
+        "Monitores universales",
+        "Equipos de monitoreo"
+      ],
+      "documents": [
+        {
+          "type": "specification",
+          "name": "Especificaciones de conectividad",
+          "url": "/docs/CABLE-445-specs.pdf"
+        }
+      ],
+      "tags": ["cable", "ECG", "monitoreo", "derivaciones"],
+      "featured": false,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2024-09-12",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 7,
+      "code": "FILT-267",
+      "name": "Filtro HEPA Esterilizador",
+      "shortDescription": "Filtro HEPA de alta eficiencia para esterilización",
+      "fullDescription": "Filtro HEPA de alta eficiencia para sistemas de esterilización y autoclaves. Tecnología avanzada que garantiza la eliminación de partículas y microorganismos durante el proceso de esterilización.",
+      "category": "esterilizacion",
+      "brand": "drager",
+      "image": "bi-funnel",
+      "price": {
+        "currency": "MXN",
+        "amount": 3200,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Eficiencia": "99.97%",
+        "Tamaño partícula": "0.3 micrones",
+        "Vida útil": "6-12 meses",
+        "Caudal": "500 m³/h",
+        "Resistencia": "Baja resistencia"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 12,
+        "leadTime": "2-3 días",
+        "supplier": "Distribuidor autorizado"
+      },
+      "compatibility": [
+        "Dräger Esterilizadores",
+        "Sistemas HVAC médicos",
+        "Autoclaves compatibles"
+      ],
+      "documents": [
+        {
+          "type": "certificate",
+          "name": "Certificado HEPA",
+          "url": "/docs/FILT-267-hepa-cert.pdf"
+        }
+      ],
+      "tags": ["filtro", "HEPA", "esterilización", "eficiencia"],
+      "featured": false,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2024-10-08",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 8,
+      "code": "DISP-558",
+      "name": "Pantalla LCD Monitor",
+      "shortDescription": "Pantalla de reemplazo para monitores de signos vitales",
+      "fullDescription": "Pantalla de reemplazo para monitores de signos vitales, alta resolución y bajo consumo. Diseño optimizado para entornos médicos con excelente visibilidad y durabilidad extendida.",
+      "category": "monitoreo",
+      "brand": "mindray",
+      "image": "bi-display",
+      "price": {
+        "currency": "MXN",
+        "amount": 8500,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Tamaño": "12.1 pulgadas",
+        "Resolución": "800x600 px",
+        "Retroiluminación": "LED",
+        "Brillo": "400 cd/m²",
+        "Contraste": "800:1"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 8,
+        "leadTime": "3-5 días",
+        "supplier": "Importación especializada"
+      },
+      "compatibility": [
+        "Mindray Monitores",
+        "Serie BeneView",
+        "Monitores compatibles"
+      ],
+      "documents": [
+        {
+          "type": "installation",
+          "name": "Guía de instalación",
+          "url": "/docs/DISP-558-install.pdf"
+        }
+      ],
+      "tags": ["pantalla", "LCD", "monitor", "reemplazo"],
+      "featured": true,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2024-07-22",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 9,
+      "code": "TURB-789",
+      "name": "Turbina Dental Alta Velocidad",
+      "shortDescription": "Turbina de alta velocidad para equipos dentales",
+      "fullDescription": "Turbina de alta velocidad para equipos dentales, con sistema de refrigeración integrado. Diseño ergonómico y balanceado que reduce la fatiga del operador y mejora la precisión en procedimientos.",
+      "category": "cirugia",
+      "brand": "ge",
+      "image": "bi-tools",
+      "price": {
+        "currency": "MXN",
+        "amount": 12000,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Velocidad": "400,000 RPM",
+        "Refrigeración": "Agua/Aire",
+        "Conexión": "Estándar ISO",
+        "Peso": "65g",
+        "Ruido": "<65 dB"
+      },
+      "stock": {
+        "available": false,
+        "quantity": 0,
+        "leadTime": "10-15 días",
+        "supplier": "Pedido especial"
+      },
+      "compatibility": [
+        "GE Dental Units",
+        "Unidades dentales estándar",
+        "Conexiones ISO"
+      ],
+      "documents": [
+        {
+          "type": "manual",
+          "name": "Manual de mantenimiento",
+          "url": "/docs/TURB-789-maintenance.pdf"
+        }
+      ],
+      "tags": ["turbina", "dental", "alta velocidad", "cirugía"],
+      "featured": false,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2024-06-18",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 10,
+      "code": "BAT-123",
+      "name": "Batería Recargable 12V",
+      "shortDescription": "Batería de respaldo para equipos médicos portátiles",
+      "fullDescription": "Batería de respaldo para equipos médicos portátiles, larga duración y carga rápida. Tecnología de iones de litio que proporciona energía confiable para equipos críticos durante emergencias.",
+      "category": "monitoreo",
+      "brand": "medtronic",
+      "image": "bi-battery-charging",
+      "price": {
+        "currency": "MXN",
+        "amount": 2800,
+        "showPrice": true,
+        "priceType": "fijo"
+      },
+      "specifications": {
+        "Voltaje": "12V DC",
+        "Capacidad": "7.2 Ah",
+        "Tiempo carga": "4 horas",
+        "Ciclos": "500+ ciclos",
+        "Temperatura": "-10°C a +60°C"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 30,
+        "leadTime": "24-48 horas",
+        "supplier": "Stock local"
+      },
+      "compatibility": [
+        "Medtronic Monitors",
+        "Equipos portátiles",
+        "Sistemas de respaldo"
+      ],
+      "documents": [
+        {
+          "type": "safety",
+          "name": "Información de seguridad",
+          "url": "/docs/BAT-123-safety.pdf"
+        }
+      ],
+      "tags": ["batería", "recargable", "respaldo", "portátil"],
+      "featured": false,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2024-05-14",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 11,
+      "code": "VAP-456",
+      "name": "Vaporizador Anestésico",
+      "shortDescription": "Vaporizador de precisión para agentes anestésicos",
+      "fullDescription": "Vaporizador de precisión para agentes anestésicos volátiles, calibración automática. Sistema de control avanzado que garantiza la dosificación exacta de anestésicos durante procedimientos quirúrgicos.",
+      "category": "anestesia",
+      "brand": "drager",
+      "image": "bi-droplet",
+      "price": {
+        "currency": "MXN",
+        "amount": 45000,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Agentes": "Sevoflurano/Isoflurano",
+        "Concentración": "0-8%",
+        "Precisión": "±0.1%",
+        "Calibración": "Automática",
+        "Display": "Digital LCD"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 2,
+        "leadTime": "7-10 días",
+        "supplier": "Distribuidor especializado"
+      },
+      "compatibility": [
+        "Dräger Anesthesia Machines",
+        "Equipos de anestesia compatibles",
+        "Sistemas de ventilación"
+      ],
+      "documents": [
+        {
+          "type": "manual",
+          "name": "Manual completo",
+          "url": "/docs/VAP-456-manual.pdf"
+        },
+        {
+          "type": "calibration",
+          "name": "Procedimiento de calibración",
+          "url": "/docs/VAP-456-calibration.pdf"
+        }
+      ],
+      "tags": ["vaporizador", "anestesia", "precisión", "calibración"],
+      "featured": true,
+      "newProduct": false,
+      "onSale": false,
+      "createdDate": "2024-04-10",
+      "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 12,
+      "code": "LAMP-789",
+      "name": "Lámpara Quirúrgica LED",
+      "shortDescription": "Sistema de iluminación LED para salas de cirugía",
+      "fullDescription": "Sistema de iluminación LED para salas de cirugía, luz fría y ajuste de intensidad. Tecnología LED avanzada que proporciona iluminación uniforme y sin sombras para procedimientos quirúrgicos precisos.",
+      "category": "cirugia",
+      "brand": "philips",
+      "image": "bi-lightbulb",
+      "price": {
+        "currency": "MXN",
+        "amount": 65000,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Potencia": "120W LED",
+        "Temperatura color": "4500K",
+        "Vida útil": "50,000 horas",
+        "Intensidad": "40,000-160,000 lux",
+        "Índice color": "Ra >95"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 1,
+        "leadTime": "15-20 días",
+        "supplier": "Importación directa"
+      },
+      "compatibility": [
+        "Salas de cirugía",
+        "Quirófanos móviles",
+        "Centros médicos"
+      ],
+      "documents": [
+        {
+          "type": "installation",
+          "name": "Manual de instalación",
+          "url": "/docs/LAMP-789-install.pdf"
+        },
+        {
+          "type": "maintenance",
+          "name": "Guía de mantenimiento",
+          "url": "/docs/LAMP-789-maintenance.pdf"
+        }
+      ],
+      "tags": ["lámpara", "quirúrgica", "LED", "iluminación"],
+      "featured": false,
+      "newProduct": true,
+      "onSale": false,
+      "createdDate": "2025-07-05",
+      "lastUpdated": "2025-08-27"
+    }
+  ]
+}

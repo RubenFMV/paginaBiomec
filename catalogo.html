@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Refacciones - BIMEG | Biomédica Mexicana</title>
+    <meta name="description" content="Catálogo completo de refacciones biomédicas BIMEG. Encuentra válvulas, sensores, circuitos respiratorios, bombas y componentes para equipos médicos hospitalarios.">
+    <meta name="keywords" content="catálogo refacciones biomédicas, válvulas médicas, sensores hospitalarios, autoclaves, esterilizadores, máquinas anestesia, BIMEG">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="assets/images/Bimeg-Logo.jpg">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Catalog specific CSS -->
+    <link rel="stylesheet" href="css/catalog.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <img src="assets/images/Bimeg-Logo.jpg" alt="Bimeg Logo" class="logo-navbar me-2">
+                <span class="brand-text">BIMEG</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Catalog Hero Section -->
+    <section class="catalog-hero section-gradient">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 text-center">
+                    <div class="catalog-hero-content">
+                        <h1 class="display-5 fw-bold text-primary mb-3">Catálogo de Refacciones</h1>
+                        <div class="company-name-box mb-4">
+                            <h5 class="text-secondary fw-bold mb-2">Biomédica Mexicana de Equipamiento y Gestión</h5>
+                            <div class="company-divider mx-auto"></div>
+                        </div>
+                        <p class="lead text-muted mb-4">
+                            Encuentra las refacciones exactas que necesitas para mantener tus equipos médicos funcionando de manera óptima
+                        </p>
+                        <div class="catalog-stats d-flex justify-content-center gap-4 flex-wrap">
+                            <div class="stat-item">
+                                <h3 class="text-primary fw-bold">500+</h3>
+                                <small class="text-muted">Refacciones disponibles</small>
+                            </div>
+                            <div class="stat-item">
+                                <h3 class="text-accent fw-bold">50+</h3>
+                                <small class="text-muted">Marcas compatibles</small>
+                            </div>
+                            <div class="stat-item">
+                                <h3 class="text-tertiary fw-bold">24h</h3>
+                                <small class="text-muted">Tiempo de cotización</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section py-4 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="filters-container">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="category-filter" class="form-label fw-bold">Categoría:</label>
+                                <select class="form-select custom-select" id="category-filter">
+                                    <option value="">Todas las categorías</option>
+                                    <option value="anestesia">Máquinas de Anestesia</option>
+                                    <option value="esterilizacion">Esterilizadores y Autoclaves</option>
+                                    <option value="monitoreo">Equipos de Monitoreo</option>
+                                    <option value="respiratorio">Equipos Respiratorios</option>
+                                    <option value="cirugia">Equipos de Cirugía</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="brand-filter" class="form-label fw-bold">Marca:</label>
+                                <select class="form-select custom-select" id="brand-filter">
+                                    <option value="">Todas las marcas</option>
+                                    <option value="drager">Dräger</option>
+                                    <option value="philips">Philips</option>
+                                    <option value="ge">GE Healthcare</option>
+                                    <option value="medtronic">Medtronic</option>
+                                    <option value="siemens">Siemens</option>
+                                    <option value="mindray">Mindray</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="search-filter" class="form-label fw-bold">Buscar:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="search-filter" placeholder="Código, nombre o descripción...">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold d-block">&nbsp;</label>
+                                <button class="btn btn-outline-secondary w-100" id="clear-filters">
+                                    <i class="bi bi-arrow-clockwise me-1"></i>Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section py-5">
+        <div class="container">
+            <div class="row" id="products-grid">
+                <!-- Productos se generarán dinámicamente aquí -->
+            </div>
+        </div>
+        
+        <!-- Loading spinner -->
+        <div class="text-center py-4" id="loading-spinner" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5 section-pattern">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="fw-bold mb-4">¿No encontraste lo que buscas?</h2>
+                    <p class="lead text-muted mb-4">
+                        Contamos con más de 5,000 refacciones en stock. Contáctanos directamente para encontrar 
+                        la refacción exacta que necesitas.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="index.html#contact" class="btn btn-primary btn-lg">
+                            <i class="bi bi-envelope me-2"></i>Contactar Especialista
+                        </a>
+                        <a href="tel:+5255123456789" class="btn btn-accent btn-lg">
+                            <i class="bi bi-telephone me-2"></i>Llamar Ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-2 mb-md-0">
+                        <img src="assets/images/Bimeg-Logo.jpg" alt="Bimeg Logo" class="logo-footer me-2">
+                        <div>
+                            <p class="mb-0 fw-bold">BIMEG</p>
+                            <p class="mb-0 small text-white-75">Biomédica Mexicana de Equipamiento y Gestión</p>
+                            <p class="mb-0 small">&copy; 2025 Refacciones Biomédicas</p>
+                            <p class="mb-0 small">Todos los derechos reservados</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <!-- Catalog JS -->
+    <script src="js/catalog.js"></script>
+</body>
+</html>

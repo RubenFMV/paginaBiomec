@@ -43,6 +43,9 @@
                         <a class="nav-link" href="#products">Refacciones</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#contact">Contacto</a>
                     </li>
                 </ul>
@@ -55,28 +58,34 @@
         <div class="container">
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6">
-                    <h1 class="display-6 display-lg-4 fw-bold text-white mb-3 mb-lg-4">
-                        Refacciones <span class="text-accent">Biomédicas</span> de Confianza
-                    </h1>
-                    <p class="fs-6 fs-lg-5 text-white-50 mb-3 mb-lg-4">
-                        Especialistas en refacciones para máquinas de anestesia, esterilizadores y autoclaves. 
-                        Servicio técnico certificado con garantía para hospitales y clínicas.
-                    </p>
-                    <div class="d-flex flex-column flex-sm-row gap-2 gap-sm-3">
-                        <a href="#products" class="btn btn-accent btn-lg">Ver Catálogo</a>
-                        <a href="#contact" class="btn btn-outline-light btn-lg">Solicitar Cotización</a>
-                    </div>
-                    <div class="mt-3 mt-lg-4">
-                        <small class="text-white-50 d-block d-sm-inline">
-                            <i class="bi bi-geo-alt me-1"></i>
-                            Atendemos: CDMX • EdoMex • Hidalgo • Michoacán • Guerrero
-                        </small>
+                    <div class="hero-content-box">
+                        <h1 class="display-6 display-lg-4 fw-bold text-white mb-3 mb-lg-4">
+                            Refacciones <span class="text-accent">Biomédicas</span> de Confianza
+                        </h1>
+                        <p class="fs-6 fs-lg-5 text-white-50 mb-3 mb-lg-4">
+                            Especialistas en refacciones para máquinas de anestesia, esterilizadores y autoclaves. 
+                            Servicio técnico certificado con garantía para hospitales y clínicas.
+                        </p>
+                        <div class="d-flex flex-column flex-sm-row gap-2 gap-sm-3">
+                            <a href="catalogo.html" class="btn btn-accent btn-lg">Ver Catálogo</a>
+                            <a href="#contact" class="btn btn-outline-light btn-lg">Solicitar Cotización</a>
+                        </div>
+                        <div class="mt-3 mt-lg-4">
+                            <small class="text-white-50 d-block d-sm-inline">
+                                <i class="bi bi-geo-alt me-1"></i>
+                                Atendemos: CDMX • EdoMex • Hidalgo • Michoacán • Guerrero • Guanajuato
+                            </small>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image text-center">
                         <div class="hero-logo-container mb-4">
                             <img src="assets/images/Bimeg-Logo.jpg" alt="Bimeg Logo" class="hero-logo">
+                            <div class="hero-brand-name mt-3">
+                                <h3 class="text-white fw-bold mb-1">BIMEG</h3>
+                                <p class="text-white-50 small mb-0">Biomédica Mexicana de Equipamiento y Gestión</p>
+                            </div>
                         </div>
                         <div class="hero-icons d-flex justify-content-center gap-4">
                             <div class="hero-icon-item">
@@ -99,7 +108,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-5">
+    <section id="services" class="py-5 section-gradient">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-5">
@@ -154,16 +163,79 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-5 bg-light">
+   
+
+    <!-- Products Section -->
+    <section id="products" class="py-5 section-pattern">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="fw-bold">Catálogo de Refacciones</h2>
+                    <p class="text-muted">Refacciones especializadas para equipos biomédicos hospitalarios</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card product-card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="product-icon mb-3">
+                                <i class="bi bi-lungs text-primary display-5"></i>
+                            </div>
+                            <h5 class="card-title">Máquinas de Anestesia</h5>
+                            <p class="card-text text-muted">
+                                Válvulas, sensores, circuitos respiratorios, vaporizadores y componentes 
+                                para equipos de anestesia de todas las marcas.
+                            </p>
+                            <a href="catalogo.html?category=anestesia" class="btn btn-outline-primary">Ver en Catálogo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card product-card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="product-icon mb-3">
+                                <i class="bi bi-fire text-danger display-5"></i>
+                            </div>
+                            <h5 class="card-title">Esterilizadores y Autoclaves</h5>
+                            <p class="card-text text-muted">
+                                Juntas, sellos, resistencias, bombas, válvulas de seguridad y 
+                                sistemas de control para esterilización.
+                            </p>
+                            <a href="catalogo.html?category=esterilizacion" class="btn btn-outline-primary">Ver en Catálogo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card product-card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="product-icon mb-3">
+                                <i class="bi bi-activity text-success display-5"></i>
+                            </div>
+                            <h5 class="card-title">Equipos de Monitoreo</h5>
+                            <p class="card-text text-muted">
+                                Sensores, cables, baterías, pantallas y componentes para 
+                                monitores de signos vitales y equipos de diagnóstico.
+                            </p>
+                            <a href="catalogo.html?category=monitoreo" class="btn btn-outline-primary">Ver en Catálogo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- About Section -->
+    <section id="about" class="py-5 section-clean">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="about-content">
-                        <div class="about-logo mb-4">
-                            <img src="assets/images/Bimeg-Logo.jpg" alt="Bimeg Logo" class="about-brand-logo">
+                       
+                        <h2 class="fw-bold mb-3">Sobre BIMEG</h2>
+                        <div class="company-name-box mb-4">
+                            <h5 class="text-primary fw-bold mb-2">Biomédica Mexicana de Equipamiento y Gestión</h5>
+                            <div class="company-divider"></div>
                         </div>
-                        <h2 class="fw-bold mb-4">Sobre BIMEG</h2>
                         <p class="text-muted mb-4">
                             Somos especialistas en refacciones biomédicas con enfoque en la excelencia y confiabilidad. 
                             Nos dedicamos a mantener funcionando los equipos médicos más críticos de hospitales y clínicas, 
@@ -219,65 +291,6 @@
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="products" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center mb-5">
-                    <h2 class="fw-bold">Catálogo de Refacciones</h2>
-                    <p class="text-muted">Refacciones especializadas para equipos biomédicos hospitalarios</p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card product-card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="product-icon mb-3">
-                                <i class="bi bi-lungs text-primary display-5"></i>
-                            </div>
-                            <h5 class="card-title">Máquinas de Anestesia</h5>
-                            <p class="card-text text-muted">
-                                Válvulas, sensores, circuitos respiratorios, vaporizadores y componentes 
-                                para equipos de anestesia de todas las marcas.
-                            </p>
-                            <a href="#contact" class="btn btn-outline-primary">Solicitar Cotización</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card product-card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="product-icon mb-3">
-                                <i class="bi bi-fire text-danger display-5"></i>
-                            </div>
-                            <h5 class="card-title">Esterilizadores y Autoclaves</h5>
-                            <p class="card-text text-muted">
-                                Juntas, sellos, resistencias, bombas, válvulas de seguridad y 
-                                sistemas de control para esterilización.
-                            </p>
-                            <a href="#contact" class="btn btn-outline-primary">Solicitar Cotización</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card product-card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="product-icon mb-3">
-                                <i class="bi bi-activity text-success display-5"></i>
-                            </div>
-                            <h5 class="card-title">Equipos de Monitoreo</h5>
-                            <p class="card-text text-muted">
-                                Sensores, cables, baterías, pantallas y componentes para 
-                                monitores de signos vitales y equipos de diagnóstico.
-                            </p>
-                            <a href="#contact" class="btn btn-outline-primary">Solicitar Cotización</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact" class="py-5 bg-dark text-white">
         <div class="container">
@@ -305,7 +318,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <select class="form-control" id="tipo-solicitud">
+                                    <select class="form-select custom-select" id="tipo-solicitud">
                                         <option value="">Selecciona el tipo de solicitud</option>
                                         <option value="cotizacion">Cotización de refacciones</option>
                                         <option value="servicio">Servicio técnico</option>
@@ -338,18 +351,18 @@
                 <div class="col-md-4 text-center">
                     <i class="bi bi-geo-alt display-6 text-accent"></i>
                     <h5 class="mt-3">Cobertura</h5>
-                    <p class="text-white-50">CDMX, Estado de México,<br>Hidalgo, Michoacán, Guerrero</p>
+                    <p class="text-white-50">CDMX, Estado de México,<br>Hidalgo, Michoacán, Guerrero, Guanajuato</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <i class="bi bi-telephone display-6 text-accent"></i>
                     <h5 class="mt-3">Teléfono y WhatsApp</h5>
-                    <p class="text-white-50">+52 55 1234 5678</p>
+                    <p class="text-white-50">+52 438 109 2435</p>
                     <small class="text-white-50">Disponible 24/7 para emergencias</small>
                 </div>
                 <div class="col-md-4 text-center">
                     <i class="bi bi-envelope display-6 text-accent"></i>
                     <h5 class="mt-3">Email</h5>
-                    <p class="text-white-50">ventas@bimeg.mx</p>
+                    <p class="text-white-50">ventas@bimeg-equipomedico.mx</p>
                     <small class="text-white-50">Respuesta en menos de 2 horas</small>
                 </div>
             </div>
@@ -365,6 +378,7 @@
                         <img src="assets/images/Bimeg-Logo.jpg" alt="Bimeg Logo" class="logo-footer me-2">
                         <div>
                             <p class="mb-0 fw-bold">BIMEG</p>
+                            <p class="mb-0 small text-white-75">Biomédica Mexicana de Equipamiento y Gestión</p>
                             <p class="mb-0 small">&copy; 2025 Refacciones Biomédicas</p>
                             <p class="mb-0 small">Todos los derechos reservados</p>
                         </div>

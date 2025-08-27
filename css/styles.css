@@ -52,6 +52,7 @@ body {
     /* Hero section mobile improvements */
     .hero-section {
         padding-top: 70px; /* Navbar más pequeño en móvil */
+        background-attachment: scroll; /* Mejor rendimiento en móvil */
     }
     
     .hero-section h1 {
@@ -73,6 +74,8 @@ body {
 @media (max-width: 576px) {
     .hero-section {
         padding-top: 65px; /* Aún más pequeño en móviles */
+        background-attachment: scroll; /* Mejor rendimiento en móvil */
+        background-position: center top; /* Mejor posicionamiento en móvil */
     }
     
     .hero-section h1 {
@@ -91,7 +94,7 @@ body {
     .brand-text {
         font-size: 1.2rem;
     }
-}
+
 
 .nav-link {
     transition: color 0.3s ease;
@@ -104,7 +107,13 @@ body {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: 
+        linear-gradient(rgba(28, 55, 87, 0.6), rgba(18, 131, 98, 0.6)),
+        url('../assets/images/Portada 3.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     position: relative;
     overflow: hidden;
     padding-top: 80px; /* Espacio para el navbar fixed */
@@ -117,8 +126,37 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="25" cy="75" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
+    background: rgba(28, 55, 87, 0.1); /* Overlay sutil para mejor legibilidad */
+    opacity: 0.8;
+}
+
+/* Mejoras de texto para Hero Section */
+.hero-section h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section p {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section small {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+/* Caja de contenido con fondo semi-transparente */
+.hero-content-box {
+    background: rgba(28, 55, 87, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .hero-image {
@@ -523,5 +561,232 @@ section {
 @media (max-width: 768px) {
     .about-brand-logo {
         height: 50px;
+    }
+}
+
+/* ===================================
+   SECCIONES MEJORADAS CON FONDOS INTERCALADOS
+   =================================== */
+
+/* 1. Services Section - Gradiente sutil */
+.section-gradient {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(18, 131, 98, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(28, 55, 87, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* 2. About Section - Fondo limpio con líneas sutiles */
+.section-clean {
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(18, 131, 98, 0.03) 50%, transparent 100%),
+        #ffffff;
+    position: relative;
+}
+
+.section-clean::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(45deg, transparent 35%, rgba(96, 181, 67, 0.05) 35%, rgba(96, 181, 67, 0.05) 65%, transparent 65%);
+    background-size: 40px 40px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* 3. Products Section - Patrón geométrico moderno */
+.section-pattern {
+    background: 
+        linear-gradient(135deg, #f1f3f4 0%, #ffffff 50%, #f1f3f4 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25px 25px, rgba(28, 55, 87, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 75px 75px, rgba(18, 131, 98, 0.08) 2px, transparent 2px);
+    background-size: 100px 100px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Asegurar que el contenido esté por encima de los overlays */
+.section-gradient .container,
+.section-clean .container,
+.section-pattern .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Efectos adicionales para las cards en secciones con patrón */
+.section-pattern .card {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-gradient .card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+}
+
+/* ===================================
+   ESTILOS PARA BIMEG BRAND NAME
+   =================================== */
+
+/* Hero Section Brand Name */
+.hero-brand-name h3 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.hero-brand-name p {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+/* About Section Company Name Box */
+.company-name-box {
+    padding: 1rem 0;
+}
+
+.company-name-box h5 {
+    font-style: italic;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.company-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+    margin: 0.5rem 0;
+}
+
+/* Footer Brand Name */
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-style: italic;
+    letter-spacing: 0.3px;
+}
+
+/* Responsive adjustments for brand name */
+@media (max-width: 768px) {
+    .hero-brand-name h3 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-brand-name p {
+        font-size: 0.8rem;
+    }
+    
+    .company-name-box h5 {
+        font-size: 1rem;
+    }
+}
+
+/* ===================================
+   FORMULARIO PERSONALIZADO - SELECT MEJORADO
+   =================================== */
+
+/* Custom Select Styling */
+.custom-select {
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 16 16'%3e%3cpath d='m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+.custom-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(28, 55, 87, 0.25);
+    outline: 0;
+}
+
+.custom-select:hover {
+    border-color: var(--secondary-color);
+}
+
+/* Opciones del select */
+.custom-select option {
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+}
+
+.custom-select option:hover,
+.custom-select option:focus,
+.custom-select option:checked {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+/* Placeholder option styling */
+.custom-select option[value=""] {
+    color: #6c757d !important;
+    font-style: italic;
+}
+
+/* Form floating label adjustment for custom select */
+.form-floating > .custom-select {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+}
+
+.form-floating > .custom-select ~ label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+/* Dark theme specific adjustments for contact section */
+#contact .custom-select {
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    border-color: #ced4da;
+}
+
+#contact .form-floating > label {
+    color: #6c757d;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .custom-select {
+        font-size: 0.9rem;
+        padding: 0.65rem 2.25rem 0.65rem 0.65rem;
     }
 }
