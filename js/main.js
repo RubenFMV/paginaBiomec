@@ -147,16 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Product card click handlers for "Más información" buttons
-    const productButtons = document.querySelectorAll('.product-card .btn');
-    productButtons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const productTitle = this.closest('.card').querySelector('.card-title').textContent;
-            showAlert(`Información detallada sobre ${productTitle} - Próximamente disponible.`, 'info');
-        });
-    });
-
     // Add loading animation to page
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
