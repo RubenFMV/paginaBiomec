@@ -186,7 +186,7 @@
                                 Válvulas, sensores, circuitos respiratorios, vaporizadores y componentes 
                                 para equipos de anestesia de todas las marcas.
                             </p>
-                            <a href="catalogo.html" class="btn btn-outline-primary">Ver en Catálogo</a>
+                            <a href="catalogo.html?category=anestesia" class="btn btn-outline-primary">Ver en Catálogo</a>
                         </div>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                                 Juntas, sellos, resistencias, bombas, válvulas de seguridad y 
                                 sistemas de control para esterilización.
                             </p>
-                            <a href="catalogo.html" class="btn btn-outline-primary">Ver en Catálogo</a>
+                            <a href="catalogo.html?category=esterilizacion" class="btn btn-outline-primary">Ver en Catálogo</a>
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                                 Sensores, cables, baterías, pantallas y componentes para 
                                 monitores de signos vitales y equipos de diagnóstico.
                             </p>
-                            <a href="catalogo.html" class="btn btn-outline-primary">Ver en Catálogo</a>
+                            <a href="catalogo.html?category=monitoreo" class="btn btn-outline-primary">Ver en Catálogo</a>
                         </div>
                     </div>
                 </div>
@@ -302,46 +302,118 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <form class="contact-form">
+                    <form id="contactForm" class="contact-form">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
-                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="contactName" name="name" placeholder="Tu nombre" required minlength="2">
+                                    <label for="contactName">Nombre Completo *</label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese un nombre válido (solo letras y espacios, mínimo 2 caracteres)
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Tu email">
-                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="contactEmail" name="email" placeholder="Tu email" required>
+                                    <label for="contactEmail">Correo Electrónico *</label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese un correo electrónico válido
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" id="contactPhone" name="phone" placeholder="Teléfono" required minlength="10">
+                                    <label for="contactPhone">Teléfono *</label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingrese un número de teléfono válido (mínimo 10 dígitos)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="contactCompany" name="company" placeholder="Empresa">
+                                    <label for="contactCompany">Empresa/Institución</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <select class="form-select custom-select" id="tipo-solicitud">
+                                    <select class="form-select custom-select" id="contactRequestType" name="requestType" required>
                                         <option value="">Selecciona el tipo de solicitud</option>
                                         <option value="cotizacion">Cotización de refacciones</option>
                                         <option value="servicio">Servicio técnico</option>
                                         <option value="garantia">Consulta de garantía</option>
                                         <option value="catalogo">Solicitar catálogo</option>
                                     </select>
-                                    <label for="tipo-solicitud">Tipo de Solicitud</label>
+                                    <label for="contactRequestType">Tipo de Solicitud *</label>
+                                    <div class="invalid-feedback">
+                                        Por favor seleccione un tipo de solicitud
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="equipo" placeholder="Marca y modelo del equipo">
-                                    <label for="equipo">Marca y Modelo del Equipo (opcional)</label>
+                                    <input type="text" class="form-control" id="contactEquipment" name="equipment" placeholder="Marca y modelo del equipo">
+                                    <label for="contactEquipment">Marca y Modelo del Equipo (opcional)</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" id="mensaje" style="height: 120px" placeholder="Describe la refacción que necesitas o el problema técnico"></textarea>
-                                    <label for="mensaje">Describe tu necesidad</label>
+                                    <textarea class="form-control" id="contactMessage" name="message" style="height: 120px" placeholder="Describe la refacción que necesitas o el problema técnico" required></textarea>
+                                    <label for="contactMessage">Describe tu necesidad *</label>
+                                    <div class="invalid-feedback">
+                                        Por favor describa su necesidad
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- Validación Anti-Robot -->
+                            <div class="col-12">
+                                <div class="security-validation-minimal">
+                                    <div class="security-header-minimal">
+                                        <i class="bi bi-shield-check security-icon-minimal"></i>
+                                        <span class="security-title-minimal">Verificación de Seguridad</span>
+                                        <span class="badge bg-success security-badge-minimal">
+                                            <i class="bi bi-lock-fill"></i>
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Honeypot (campo oculto para robots) -->
+                                    <input type="text" name="website" id="contactWebsite" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
+                                    
+                                    <!-- CAPTCHA Matemático Minimalista -->
+                                    <div class="math-captcha-minimal">
+                                        <label for="contactMathCaptcha" class="form-label mb-2">
+                                            <i class="bi bi-calculator me-1"></i>
+                                            Resuelve: <span id="contactMathQuestion" class="math-question-minimal"></span> = 
+                                            <input type="text" class="form-control d-inline-block math-input-minimal" 
+                                                   id="contactMathCaptcha" name="mathCaptcha" 
+                                                   required placeholder="?" autocomplete="off">
+                                            <button type="button" class="btn btn-outline-primary btn-sm math-refresh-btn" 
+                                                    onclick="generateContactMathCaptcha()" 
+                                                    title="Generar nueva operación">
+                                                <i class="bi bi-arrow-clockwise"></i>
+                                            </button>
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            Operación incorrecta
+                                        </div>
+                                        <small class="text-muted security-help-minimal">
+                                            <i class="bi bi-info-circle me-1"></i>Prevención de spam
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Campos ocultos -->
+                            <input type="hidden" id="contactMathAnswer" name="mathAnswer" value="">
+                            <input type="hidden" id="contactFormStartTime" name="formStartTime" value="">
+
                             <div class="col-12 text-center">
-                                <button type="submit" class="btn btn-accent btn-lg px-5">Enviar Mensaje</button>
+                                <button type="submit" class="btn btn-accent btn-lg px-5">
+                                    <i class="bi bi-send me-1"></i>Enviar Mensaje
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -368,6 +440,18 @@
             </div>
         </div>
     </section>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/524381092435?text=Hola%20BIMEG%2C%20necesito%20información%20sobre%20refacciones%20biomédicas" 
+           target="_blank" 
+           class="whatsapp-btn" 
+           title="Contactar por WhatsApp - Soporte 24/7">
+            <i class="bi bi-whatsapp"></i>
+            <span class="whatsapp-text">¿Necesitas ayuda?</span>
+            <div class="whatsapp-pulse"></div>
+        </a>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-primary text-white py-4">
@@ -396,9 +480,380 @@
         </div>
     </footer>
 
+    <!-- Estilos para validación anti-robot -->
+    <style>
+    .security-validation-minimal {
+        background: #f8f9fa;
+        border: 1px solid #28a745;
+        border-radius: 8px;
+        padding: 15px;
+        border-left: 4px solid #28a745;
+        margin-top: 15px;
+    }
+
+    .security-header-minimal {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+    }
+
+    .security-icon-minimal {
+        color: #28a745;
+        font-size: 1.1rem;
+    }
+
+    .security-title-minimal {
+        font-weight: 600;
+        color: #495057;
+        flex: 1;
+    }
+
+    .security-badge-minimal {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    .math-captcha-minimal .form-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        font-weight: 500;
+        color: #495057;
+    }
+
+    .math-question-minimal {
+        background: #007bff;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-family: monospace;
+        font-size: 0.95rem;
+    }
+
+    .math-input-minimal {
+        width: 70px !important;
+        height: 32px;
+        text-align: center;
+        font-weight: bold;
+        margin-left: 4px;
+        border: 1px solid #ced4da;
+        color: #000000 !important;
+        background-color: #ffffff !important;
+    }
+
+    .math-refresh-btn {
+        height: 32px;
+        width: 32px;
+        padding: 0;
+        margin-left: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+
+    .math-refresh-btn:hover {
+        transform: rotate(180deg);
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+    .math-refresh-btn i {
+        font-size: 0.9rem;
+    }
+
+    .math-input-minimal:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+    }
+
+    .math-input-minimal.is-valid {
+        border-color: #28a745;
+        background: #f8fff9;
+        color: #000000 !important;
+    }
+
+    .math-input-minimal.is-invalid {
+        border-color: #dc3545;
+        background: #fff5f5;
+        color: #000000 !important;
+    }
+
+    .security-help-minimal {
+        display: block;
+        margin-top: 6px;
+        font-size: 0.8rem;
+        color: #6c757d;
+    }
+
+    /* Responsive */
+    @media (max-width: 576px) {
+        .math-captcha-minimal .form-label {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .math-input-minimal {
+            margin-left: 0;
+            margin-top: 4px;
+        }
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 1000;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .whatsapp-btn {
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
+        overflow: hidden;
+        font-weight: 600;
+        font-size: 0.9rem;
+        max-width: 60px;
+        justify-content: center;
+    }
+
+    .whatsapp-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        color: white;
+        text-decoration: none;
+        max-width: 200px;
+        padding: 15px 25px;
+    }
+
+    .whatsapp-btn:hover .whatsapp-text {
+        opacity: 1;
+        margin-left: 10px;
+        width: auto;
+    }
+
+    .whatsapp-btn i {
+        font-size: 1.5rem;
+        z-index: 2;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .whatsapp-text {
+        opacity: 0;
+        width: 0;
+        margin-left: 0;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+        z-index: 2;
+        position: relative;
+    }
+
+    .whatsapp-pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background: rgba(37, 211, 102, 0.3);
+        border-radius: 50px;
+        transform: translate(-50%, -50%);
+        animation: whatsapp-pulse 2s infinite;
+    }
+
+    @keyframes whatsapp-pulse {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        70% {
+            transform: translate(-50%, -50%) scale(1.3);
+            opacity: 0;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1.3);
+            opacity: 0;
+        }
+    }
+
+    /* Mostrar inmediatamente sin animación de entrada */
+    .whatsapp-float {
+        opacity: 1;
+        animation: none;
+    }
+
+    /* Efectos adicionales */
+    .whatsapp-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .whatsapp-btn:hover::before {
+        left: 100%;
+    }
+
+    /* Responsive para móviles */
+    @media (max-width: 768px) {
+        .whatsapp-float {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .whatsapp-btn {
+            padding: 12px 16px;
+            font-size: 0.85rem;
+        }
+
+        .whatsapp-btn:hover {
+            max-width: 180px;
+            padding: 12px 20px;
+        }
+
+        .whatsapp-btn i {
+            font-size: 1.3rem;
+        }
+    }
+
+    /* Micro-interacciones */
+    .whatsapp-btn:active {
+        transform: translateY(-1px) scale(0.98);
+    }
+
+    /* Modo oscuro automático (si el sistema lo prefiere) */
+    @media (prefers-color-scheme: dark) {
+        .whatsapp-btn {
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-btn:hover {
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+    }
+    </style>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Catalog Configuration -->
+    <script src="js/catalog-config.js"></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
+    
+    <!-- WhatsApp Button Enhancement -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const whatsappBtn = document.querySelector('.whatsapp-btn');
+            
+            if (whatsappBtn) {
+                // Agregar analytics tracking (opcional)
+                whatsappBtn.addEventListener('click', function() {
+                    // Google Analytics 4
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'click', {
+                            'event_category': 'WhatsApp',
+                            'event_label': 'Floating Button',
+                            'value': 1
+                        });
+                    }
+                    
+                    // Log para debugging
+                    console.log('🟢 WhatsApp button clicked');
+                });
+
+                // Efecto de vibración en dispositivos móviles (si está disponible)
+                whatsappBtn.addEventListener('mousedown', function() {
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                });
+
+                // Auto-hide en scroll hacia abajo, show en scroll hacia arriba
+                // DESACTIVADO - El icono permanece siempre visible
+                /*
+                let lastScrollTop = 0;
+                let scrollTimeout;
+                
+                window.addEventListener('scroll', function() {
+                    clearTimeout(scrollTimeout);
+                    
+                    scrollTimeout = setTimeout(function() {
+                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        const whatsappFloat = document.querySelector('.whatsapp-float');
+                        
+                        if (scrollTop > lastScrollTop && scrollTop > 300) {
+                            // Scrolling down & not at top
+                            whatsappFloat.style.transform = 'translateY(100px)';
+                            whatsappFloat.style.opacity = '0.7';
+                        } else {
+                            // Scrolling up or at top
+                            whatsappFloat.style.transform = 'translateY(0)';
+                            whatsappFloat.style.opacity = '1';
+                        }
+                        
+                        lastScrollTop = scrollTop;
+                    }, 100);
+                });
+                */
+
+                // Mensaje dinámico según la sección visible
+                const updateWhatsAppMessage = () => {
+                    const sections = document.querySelectorAll('section[id]');
+                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+                    
+                    let currentSection = 'inicio';
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        
+                        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                            currentSection = section.id;
+                        }
+                    });
+                    
+                    const messages = {
+                        'home': 'Hola%20BIMEG%2C%20quiero%20información%20sobre%20refacciones%20biomédicas',
+                        'services': 'Hola%20BIMEG%2C%20necesito%20información%20sobre%20sus%20servicios%20técnicos',
+                        'products': 'Hola%20BIMEG%2C%20busco%20refacciones%20específicas%20para%20mi%20equipo',
+                        'about': 'Hola%20BIMEG%2C%20me%20gustaría%20conocer%20más%20sobre%20su%20empresa',
+                        'contact': 'Hola%20BIMEG%2C%20quiero%20solicitar%20una%20cotización'
+                    };
+                    
+                    const message = messages[currentSection] || messages['home'];
+                    const newHref = `https://wa.me/524381092435?text=${message}`;
+                    
+                    if (whatsappBtn.href !== newHref) {
+                        whatsappBtn.href = newHref;
+                    }
+                };
+                
+                // Actualizar mensaje al hacer scroll
+                window.addEventListener('scroll', updateWhatsAppMessage);
+                updateWhatsAppMessage(); // Inicializar
+            }
+        });
+    </script>
 </body>
 </html>

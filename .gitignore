@@ -1,0 +1,30 @@
+# BIMEG - GitHub Pages Configuration
+
+# Herramientas de gestión (solo local)
+tools/
+
+# Archivos que no suben a GitHub Pages
+*.py
+*.bat
+__pycache__/
+*.pyc
+*.pyo
+requirements.txt
+
+# Archivos de desarrollo local
+.vscode/
+.idea/
+*.tmp
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de backup
+*.bak
+*.backup
+
+# Archivos temporales de Excel
+~$*.xlsx
+~$*.xls

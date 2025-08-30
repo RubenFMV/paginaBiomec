@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastUpdated": "2025-08-27",
-    "totalProducts": 12,
+    "lastUpdated": "2025-08-29",
+    "totalProducts": 13,
     "description": "Base de datos de productos BIMEG - Refacciones Biomédicas"
   },
   "categories": [
@@ -74,6 +74,33 @@
       "category": "anestesia",
       "brand": "drager",
       "image": "bi-gear-fill",
+      "images": {
+        "main": "assets\\images\\products\\VAL-001\\Portada1.jpg",
+        "gallery": [
+          {
+            "url": "assets/images/products/VAL-001/Portada2.jpg",
+            "alt": "Válvula de Alivio de Presión - Vista Principal",
+            "title": "Vista Principal"
+          },
+          {
+            "url": "assets/images/products/VAL-001/Portada1.jpg",
+            "alt": "Válvula de Alivio de Presión - Vista Lateral",
+            "title": "Vista Lateral"
+          },
+          {
+            "url": "assets/images/products/VAL-001/Portada 3.jpg",
+            "alt": "Válvula de Alivio de Presión - Vista Lateral",
+            "title": "Vista Lateral"
+          },
+          {
+            "url": "assets/images/products/VAL-001/Bimeg-Logo.jpg",
+            "alt": "Válvula de Alivio de Presión - Vista Lateral",
+            "title": "Vista Lateral"
+          }
+          
+        ],
+        "thumbnail": "assets/images/products/VAL-001/thumbnail.jpg"
+      },
       "price": {
         "currency": "MXN",
         "amount": 2500,
@@ -110,7 +137,12 @@
           "url": "/docs/VAL-001-cert.pdf"
         }
       ],
-      "tags": ["válvula", "seguridad", "presión", "anestesia"],
+      "tags": [
+        "válvula",
+        "seguridad",
+        "presión",
+        "anestesia"
+      ],
       "featured": true,
       "newProduct": false,
       "onSale": false,
@@ -126,6 +158,33 @@
       "category": "anestesia",
       "brand": "philips",
       "image": "bi-cpu",
+      "images": {
+        "main": "assets\\images\\products\\VAL-001\\Portada1.jpg",
+        "gallery": [
+          {
+            "url": "assets/images/products/VAL-001/Portada2.jpg",
+            "alt": "Válvula de Alivio de Presión - Vista Principal",
+            "title": "Vista Principal"
+          },
+          {
+            "url": "assets/images/products/VAL-001/Portada1.jpg",
+            "alt": "Válvula de Alivio de Presión - Vista Lateral",
+            "title": "Vista Lateral"
+          },
+          {
+            "url": "assets/images/products/VAL-001/Portada 3.jpg",
+            "alt": "Válvula de Alivio de Presión - Vista Lateral",
+            "title": "Vista Lateral"
+          },
+          {
+            "url": "assets/images/products/VAL-001/Bimeg-Logo.jpg",
+            "alt": "Válvula de Alivio de Presión - Vista Lateral",
+            "title": "Vista Lateral"
+          }
+          
+        ],
+        "thumbnail": "assets/images/products/VAL-001/thumbnail.jpg"
+      },
       "price": {
         "currency": "MXN",
         "amount": 4200,
@@ -157,7 +216,12 @@
           "url": "/docs/SENS-205-guide.pdf"
         }
       ],
-      "tags": ["sensor", "oxígeno", "monitoreo", "precisión"],
+      "tags": [
+        "sensor",
+        "oxígeno",
+        "monitoreo",
+        "precisión"
+      ],
       "featured": false,
       "newProduct": true,
       "onSale": false,
@@ -204,7 +268,12 @@
           "url": "/docs/CIRC-150-specs.pdf"
         }
       ],
-      "tags": ["circuito", "respiratorio", "ventilación", "desechable"],
+      "tags": [
+        "circuito",
+        "respiratorio",
+        "ventilación",
+        "desechable"
+      ],
       "featured": false,
       "newProduct": false,
       "onSale": true,
@@ -252,7 +321,12 @@
           "url": "/docs/JUNTA-089-compat.pdf"
         }
       ],
-      "tags": ["junta", "autoclave", "silicona", "sellado"],
+      "tags": [
+        "junta",
+        "autoclave",
+        "silicona",
+        "sellado"
+      ],
       "featured": false,
       "newProduct": false,
       "onSale": false,
@@ -304,7 +378,12 @@
           "url": "/docs/BOMB-312-warranty.pdf"
         }
       ],
-      "tags": ["bomba", "vacío", "aspiración", "motor"],
+      "tags": [
+        "bomba",
+        "vacío",
+        "aspiración",
+        "motor"
+      ],
       "featured": true,
       "newProduct": false,
       "onSale": false,
@@ -351,7 +430,12 @@
           "url": "/docs/CABLE-445-specs.pdf"
         }
       ],
-      "tags": ["cable", "ECG", "monitoreo", "derivaciones"],
+      "tags": [
+        "cable",
+        "ECG",
+        "monitoreo",
+        "derivaciones"
+      ],
       "featured": false,
       "newProduct": false,
       "onSale": false,
@@ -398,7 +482,12 @@
           "url": "/docs/FILT-267-hepa-cert.pdf"
         }
       ],
-      "tags": ["filtro", "HEPA", "esterilización", "eficiencia"],
+      "tags": [
+        "filtro",
+        "HEPA",
+        "esterilización",
+        "eficiencia"
+      ],
       "featured": false,
       "newProduct": false,
       "onSale": false,
@@ -445,7 +534,12 @@
           "url": "/docs/DISP-558-install.pdf"
         }
       ],
-      "tags": ["pantalla", "LCD", "monitor", "reemplazo"],
+      "tags": [
+        "pantalla",
+        "LCD",
+        "monitor",
+        "reemplazo"
+      ],
       "featured": true,
       "newProduct": false,
       "onSale": false,
@@ -492,7 +586,12 @@
           "url": "/docs/TURB-789-maintenance.pdf"
         }
       ],
-      "tags": ["turbina", "dental", "alta velocidad", "cirugía"],
+      "tags": [
+        "turbina",
+        "dental",
+        "alta velocidad",
+        "cirugía"
+      ],
       "featured": false,
       "newProduct": false,
       "onSale": false,
@@ -539,7 +638,12 @@
           "url": "/docs/BAT-123-safety.pdf"
         }
       ],
-      "tags": ["batería", "recargable", "respaldo", "portátil"],
+      "tags": [
+        "batería",
+        "recargable",
+        "respaldo",
+        "portátil"
+      ],
       "featured": false,
       "newProduct": false,
       "onSale": false,
@@ -591,7 +695,12 @@
           "url": "/docs/VAP-456-calibration.pdf"
         }
       ],
-      "tags": ["vaporizador", "anestesia", "precisión", "calibración"],
+      "tags": [
+        "vaporizador",
+        "anestesia",
+        "precisión",
+        "calibración"
+      ],
       "featured": true,
       "newProduct": false,
       "onSale": false,
@@ -643,12 +752,56 @@
           "url": "/docs/LAMP-789-maintenance.pdf"
         }
       ],
-      "tags": ["lámpara", "quirúrgica", "LED", "iluminación"],
+      "tags": [
+        "lámpara",
+        "quirúrgica",
+        "LED",
+        "iluminación"
+      ],
       "featured": false,
       "newProduct": true,
       "onSale": false,
       "createdDate": "2025-07-05",
       "lastUpdated": "2025-08-27"
+    },
+    {
+      "id": 13,
+      "code": "MNR-001",
+      "name": "Monitor de signos vitales",
+      "shortDescription": "Monitor de signos vitales, con todo sus aditamentos",
+      "fullDescription": "Monitores",
+      "category": "monitoreo",
+      "brand": "mindray",
+      "image": "bi bi-android",
+      "price": {
+        "currency": "MXN",
+        "amount": 75000,
+        "showPrice": true,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Derivaciones": "Derivaciones",
+        "SPO2": "SPO2"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 1,
+        "leadTime": "5 días",
+        "supplier": "China"
+      },
+      "compatibility": [
+        "Fabius",
+        "Mindray"
+      ],
+      "tags": [
+        "Presion",
+        "SPO2"
+      ],
+      "featured": false,
+      "newProduct": true,
+      "onSale": false,
+      "createdDate": "2025-08-29",
+      "lastUpdated": "2025-08-29"
     }
   ]
 }

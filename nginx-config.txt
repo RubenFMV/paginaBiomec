@@ -1,0 +1,49 @@
+# Configuración Nginx para BIMEG
+# Agregar este bloque al archivo de configuración del sitio
+
+server {
+    listen 80;
+    server_name tu-dominio.com www.tu-dominio.com;
+    root /path/to/paginaBiomec;
+    index index.html;
+
+    # Página de error 404 personalizada
+    error_page 404 /404.html;
+    
+    # Opcional: Página de error 500
+    # error_page 500 502 503 504 /500.html;
+
+    # Configuración para archivos estáticos
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
+        expires 1M;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Configuración de seguridad
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header X-Content-Type-Options "nosniff" always;
+
+    # Proteger panel de desarrollo en producción
+    location = /dev-panel.html {
+        # allow YOUR_IP;
+        # deny all;
+        try_files $uri $uri/ =404;
+    }
+
+    # Bloquear archivos sensibles
+    location ~ /\.(htaccess|htpasswd|ini|log|sh|inc|bak)$ {
+        deny all;
+    }
+
+    # Configuración principal
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Compresión gzip
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
+}

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página No Encontrada - BIMEG | Refacciones Biomédicas</title>
+    <meta name="description" content="La página que buscas no existe. Navega por nuestro catálogo de refacciones biomédicas o contacta con nuestro equipo técnico especializado.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="assets/images/Bimeg-Logo.jpg">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .error-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .error-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, white 2px, transparent 2px);
+            background-size: 50px 50px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .error-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .error-404 {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            color: #667eea;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .medical-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .medical-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float-icons 15s ease-in-out infinite;
+        }
+        
+        .medical-icon:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            font-size: 2rem;
+            animation-delay: 0s;
+        }
+        
+        .medical-icon:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            font-size: 1.5rem;
+            animation-delay: 2s;
+        }
+        
+        .medical-icon:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            font-size: 2.5rem;
+            animation-delay: 4s;
+        }
+        
+        .medical-icon:nth-child(4) {
+            bottom: 10%;
+            right: 10%;
+            font-size: 1.8rem;
+            animation-delay: 6s;
+        }
+        
+        @keyframes float-icons {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.1;
+            }
+            25% { 
+                transform: translateY(-20px) rotate(90deg); 
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-40px) rotate(180deg); 
+                opacity: 0.1;
+            }
+            75% { 
+                transform: translateY(-20px) rotate(270deg); 
+                opacity: 0.3;
+            }
+        }
+        
+        .btn-custom {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-custom:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-custom:hover:before {
+            left: 100%;
+        }
+        
+        .breadcrumb-custom {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 50px;
+            padding: 8px 20px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .search-suggestion {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .search-suggestion:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        @media (max-width: 768px) {
+            .error-404 {
+                font-size: 5rem;
+            }
+            
+            .error-card {
+                margin: 20px;
+                border-radius: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <!-- Background Pattern -->
+        <div class="error-bg-pattern"></div>
+        
+        <!-- Floating Medical Icons -->
+        <div class="medical-icons">
+            <i class="bi bi-heart-pulse medical-icon"></i>
+            <i class="bi bi-gear medical-icon"></i>
+            <i class="bi bi-tools medical-icon"></i>
+            <i class="bi bi-shield-check medical-icon"></i>
+        </div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="error-card p-5 text-center">
+                        <!-- Header Section -->
+                        <div class="mb-4">
+                            <i class="bi bi-exclamation-triangle error-icon mb-3"></i>
+                            <div class="error-404 mb-3">404</div>
+                            <h1 class="fw-bold mb-3">¡Oops! Página No Encontrada</h1>
+                            <p class="text-muted lead mb-4">
+                                La página que buscas parece haber desaparecido como una refacción agotada. 
+                                Pero no te preocupes, nuestro equipo técnico está aquí para ayudarte.
+                            </p>
+                        </div>
+
+                        <!-- Breadcrumb -->
+                        <nav aria-label="breadcrumb" class="mb-4">
+                            <ol class="breadcrumb breadcrumb-custom justify-content-center mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="index.html" class="text-decoration-none">
+                                        <i class="bi bi-house me-1"></i>Inicio
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active">Error 404</li>
+                            </ol>
+                        </nav>
+
+                        <!-- Quick Actions -->
+                        <div class="row g-3 mb-5">
+                            <div class="col-md-6">
+                                <a href="index.html" class="btn btn-primary btn-custom w-100">
+                                    <i class="bi bi-house me-2"></i>Página Principal
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="javascript:goToCatalog()" class="btn btn-outline-primary btn-custom w-100">
+                                    <i class="bi bi-grid me-2"></i>Ver Catálogo
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Quick Navigation -->
+                        <div class="mb-5">
+                            <h5 class="fw-bold mb-3">¿Qué estabas buscando?</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="search-suggestion">
+                                        <h6 class="fw-bold mb-2">
+                                            <i class="bi bi-lungs text-primary me-2"></i>Refacciones de Anestesia
+                                        </h6>
+                                        <p class="text-muted small mb-2">Válvulas, sensores, vaporizadores</p>
+                                        <a href="javascript:goToCatalogWithCategory('anestesia')" class="btn btn-sm btn-outline-primary">
+                                            Ver Productos
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="search-suggestion">
+                                        <h6 class="fw-bold mb-2">
+                                            <i class="bi bi-fire text-danger me-2"></i>Esterilizadores
+                                        </h6>
+                                        <p class="text-muted small mb-2">Juntas, sellos, resistencias</p>
+                                        <a href="javascript:goToCatalogWithCategory('esterilizacion')" class="btn btn-sm btn-outline-danger">
+                                            Ver Productos
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="search-suggestion">
+                                        <h6 class="fw-bold mb-2">
+                                            <i class="bi bi-activity text-success me-2"></i>Equipos de Monitoreo
+                                        </h6>
+                                        <p class="text-muted small mb-2">Sensores, cables, baterías</p>
+                                        <a href="javascript:goToCatalogWithCategory('monitoreo')" class="btn btn-sm btn-outline-success">
+                                            Ver Productos
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="search-suggestion">
+                                        <h6 class="fw-bold mb-2">
+                                            <i class="bi bi-telephone text-info me-2"></i>Contacto Directo
+                                        </h6>
+                                        <p class="text-muted small mb-2">Soporte técnico 24/7</p>
+                                        <a href="index.html#contact" class="btn btn-sm btn-outline-info">
+                                            Contactar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact CTA -->
+                        <div class="bg-light rounded-4 p-4">
+                            <h6 class="fw-bold mb-3">¿No encuentras lo que necesitas?</h6>
+                            <p class="text-muted mb-3">
+                                Nuestro equipo técnico especializado puede ayudarte a encontrar 
+                                la refacción exacta para tu equipo biomédico.
+                            </p>
+                            <div class="row g-2 justify-content-center">
+                                <div class="col-auto">
+                                    <a href="tel:+524381092435" class="btn btn-success btn-custom">
+                                        <i class="bi bi-telephone me-2"></i>+52 438 109 2435
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="mailto:ventas@bimeg-equipomedico.mx" class="btn btn-outline-success btn-custom">
+                                        <i class="bi bi-envelope me-2"></i>Email
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Info -->
+                        <div class="mt-4 pt-4 border-top">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <img src="assets/images/Bimeg-Logo.jpg" alt="Bimeg Logo" class="logo-footer me-2" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px;">
+                                    <span class="fw-bold">BIMEG</span>
+                                    <small class="text-muted d-block">Biomédica Mexicana de Equipamiento y Gestión</small>
+                                </div>
+                                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                                    <small class="text-muted">
+                                        <i class="bi bi-geo-alt me-1"></i>
+                                        Cobertura: CDMX • EdoMex • Hidalgo • Michoacán • Guerrero
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Catalog Configuration -->
+    <script src="js/catalog-config.js"></script>
+    
+    <script>
+        // Animación de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.error-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Agregar efecto de hover a las sugerencias
+            const suggestions = document.querySelectorAll('.search-suggestion');
+            suggestions.forEach(suggestion => {
+                suggestion.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(10px) scale(1.02)';
+                });
+                
+                suggestion.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+        });
+        
+        // Detectar la URL que causó el error y mostrar sugerencias inteligentes
+        const currentPath = window.location.pathname;
+        const currentSearch = window.location.search;
+        
+        // Log para debugging (opcional)
+        console.log('🔍 Página no encontrada:', currentPath + currentSearch);
+        
+        // Si hay parámetros de búsqueda, podrías usar esta información 
+        // para mostrar sugerencias más específicas
+        if (currentSearch.includes('anestesia') || currentPath.includes('anestesia')) {
+            console.log('💡 Sugerencia: Usuario buscaba productos de anestesia');
+        }
+    </script>
+</body>
+</html>
