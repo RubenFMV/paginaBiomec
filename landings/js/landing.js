@@ -8,8 +8,17 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
+            
+            // Close mobile menu if open
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                navbarToggler.click();
+            }
+            
             if (target) {
-                const offsetTop = target.offsetTop - 80;
+                // Adjust offset based on screen size
+                const offsetTop = window.innerWidth < 768 ? target.offsetTop - 60 : target.offsetTop - 80;
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -24,11 +33,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.scrollY > 50) {
             navbar.style.backgroundColor = 'rgba(28, 55, 87, 0.95)';
             navbar.style.backdropFilter = 'blur(10px)';
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
         } else {
             navbar.style.backgroundColor = 'rgba(28, 55, 87, 1)';
             navbar.style.backdropFilter = 'none';
+            navbar.style.boxShadow = 'none';
         }
     });
+    
+    // Optimize animations for mobile - reduce animations on small screens
+    function checkForReducedMotion() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 576) {
+            document.documentElement.classList.add('reduced-motion');
+        } else {
+            document.documentElement.classList.remove('reduced-motion');
+        }
+    }
+    
+    // Check on load and on resize
+    checkForReducedMotion();
+    window.addEventListener('resize', checkForReducedMotion);
 
     // Animate elements on scroll
     const observerOptions = {
