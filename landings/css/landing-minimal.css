@@ -1,0 +1,196 @@
+/* Estilos minimalistas para landings de BIMEG */
+
+/* Gradientes y fondos */
+.bg-gradient {
+    background: linear-gradient(to right, rgba(245,247,250,1) 0%, rgba(230,232,240,1) 100%);
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+section {
+    padding: 4rem 0;
+}
+
+/* Tarjeta de valores */
+.value-banner {
+    padding: 1.5rem 0;
+}
+
+.value-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    gap: 0.5rem;
+}
+
+.value-item i {
+    font-size: 1.25rem;
+}
+
+/* Tarjetas de servicios */
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.service-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.service-list li i {
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    margin-right: 0.75rem;
+}
+
+.service-list li:before {
+    content: "•";
+    color: var(--bs-primary);
+    position: absolute;
+    left: 0.5rem;
+    font-weight: bold;
+}
+
+.service-list li i + * {
+    margin-left: 0.5rem;
+}
+
+.service-list li:last-child {
+    border-bottom: none;
+}
+
+/* Tarjetas de beneficios */
+.benefit-card {
+    padding: 1.5rem;
+    height: 100%;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.benefit-card .benefit-icon {
+    font-size: 2rem;
+}
+
+/* Tarjetas de productos */
+.product-card-landing {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.product-card-landing:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Contacto */
+.contact-form-container {
+    border-color: rgba(0,0,0,0.08) !important;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.04);
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .border-end {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .benefit-card {
+        padding: 1rem;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .value-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .product-card-landing {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Estilos para la sección CTA */
+.cta-section {
+    padding: 3rem 0;
+    border-radius: 8px;
+}
+
+.cta-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.cta-section p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+    font-weight: 500;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: white;
+}
+
+.btn-whatsapp i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
