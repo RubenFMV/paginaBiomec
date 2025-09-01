@@ -3,75 +3,920 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Desarrollo - BIMEG</title>
+    <title>Product Manager - BIMEG</title>
     <link rel="icon" type="image/jpg" href="assets/images/Bimeg-Logo.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
     <style>
         body { background: #f8f9fa; }
-        .dev-panel { max-width: 600px; margin: 50px auto; }
-        .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .manager-container { max-width: 1200px; margin: 20px auto; }
+        .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
         .badge-dev { background: #6f42c1; }
         .badge-prod { background: #dc3545; }
+        .product-card { 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .product-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            border-color: #0d6efd;
+        }
+        .product-image { 
+            width: 55px; 
+            height: 55px; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            border: 2px solid #f8f9fa;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .btn-action { 
+            width: 28px; 
+            height: 28px; 
+            padding: 0; 
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-section { background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; }
+        .nav-pills .nav-link { border-radius: 25px; padding: 10px 20px; margin-right: 10px; }
+        .nav-pills .nav-link.active { background: #0d6efd; }
+        .product-stats { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .stats-card { background: white; border-radius: 15px; padding: 20px; text-align: center; }
+        .stats-number { font-size: 2rem; font-weight: bold; color: #0d6efd; }
+        .image-preview { max-width: 100px; max-height: 100px; object-fit: cover; border-radius: 8px; }
+        .loading-spinner { display: none; }
+        .category-badge { font-size: 0.75rem; border-radius: 20px; }
+        .product-actions { opacity: 0; transition: opacity 0.3s; }
+        .product-card:hover .product-actions { opacity: 1; }
+        .search-box { border-radius: 25px; padding-left: 20px; }
+        .alert-custom { border: none; border-radius: 12px; }
+        
+        /* New styles for improved layout */
+        .bg-gradient { border-radius: 12px 12px 0 0 !important; }
+        .card-header.bg-gradient { border: none; }
+        .form-label.fw-bold { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-group .btn { border-radius: 6px; }
+        .dropdown-menu { border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .dropdown-item { padding: 8px 16px; border-radius: 6px; margin: 2px 8px; }
+        .dropdown-item:hover { background-color: #f8f9fa; }
+        
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .product-image { width: 45px; height: 45px; }
+            .btn-action { width: 26px; height: 26px; }
+            .card-title { font-size: 0.9rem; }
+            .manager-container { margin: 10px auto; }
+            .form-label.fw-bold { font-size: 0.8rem; }
+        }
+        
+        /* Grid improvements */
+        .min-w-0 { min-width: 0; }
+        .text-truncate-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Enhanced card hover effects */
+        .product-card .badge { transition: all 0.3s ease; }
+        .product-card:hover .badge { transform: scale(1.05); }
+        .product-card .btn-outline-info:hover { 
+            background-color: #0dcaf0; 
+            border-color: #0dcaf0; 
+            color: white; 
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="dev-panel">
-            <div class="card">
-                <div class="card-header bg-dark text-white">
-                    <h5 class="mb-0">
-                        <i class="bi bi-tools me-2"></i>Panel de Desarrollo - BIMEG
-                    </h5>
+    <div class="container-fluid manager-container">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card product-stats">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="mb-1">
+                                    <i class="bi bi-boxes me-3"></i>Product Manager
+                                </h2>
+                                <p class="mb-0 opacity-75">Sistema de gestión de productos BIMEG</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="stats-card">
+                                            <div id="totalProducts" class="stats-number">0</div>
+                                            <small class="text-muted">Total Productos</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stats-card">
+                                            <div id="totalCategories" class="stats-number">0</div>
+                                            <small class="text-muted">Categorías</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stats-card">
+                                            <div id="totalImages" class="stats-number">0</div>
+                                            <small class="text-muted">Imágenes</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="alert alert-warning">
-                        <i class="bi bi-exclamation-triangle me-2"></i>
-                        <strong>Solo para desarrolladores:</strong> Esta página permite acceso directo a las versiones de desarrollo.
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <ul class="nav nav-pills" id="managerTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="products-tab" data-bs-toggle="pill" data-bs-target="#products-panel" type="button" role="tab">
+                            <i class="bi bi-grid me-2"></i>Gestionar Productos
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="add-product-tab" data-bs-toggle="pill" data-bs-target="#add-product-panel" type="button" role="tab">
+                            <i class="bi bi-plus-circle me-2"></i>Agregar Producto
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="settings-tab" data-bs-toggle="pill" data-bs-target="#settings-panel" type="button" role="tab">
+                            <i class="bi bi-gear me-2"></i>Configuración
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Alert Area -->
+        <div id="alertArea"></div>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="managerTabsContent">
+            
+            <!-- Products Management Panel -->
+            <div class="tab-pane fade show active" id="products-panel" role="tabpanel">
+                <!-- Header Section -->
+                <div class="card mb-4">
+                    <div class="card-header bg-gradient" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%); color: white;">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5 class="mb-0">
+                                    <i class="bi bi-grid-3x3-gap me-2"></i>Gestión de Productos
+                                </h5>
+                                <small class="opacity-75">Administra el catálogo completo de productos BIMEG</small>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <span class="badge bg-light text-dark px-3 py-2">
+                                    <i class="bi bi-box-seam me-1"></i>
+                                    <span id="productCount">0</span> productos
+                                </span>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <!-- Search and Filter Section -->
+                    <div class="card-body bg-light">
+                        <div class="row g-3 align-items-end">
+                            <!-- Search Bar -->
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold text-primary mb-2">
+                                    <i class="bi bi-search me-1"></i>Búsqueda
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0">
+                                        <i class="bi bi-search text-muted"></i>
+                                    </span>
+                                    <input type="text" class="form-control border-start-0" 
+                                           id="searchProducts" 
+                                           placeholder="Buscar por nombre, código, marca, descripción...">
+                                    <button class="btn btn-outline-secondary" type="button" id="clearSearch" title="Limpiar búsqueda">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
 
-                    <h6 class="fw-bold mb-3">Estado Actual del Catálogo:</h6>
-                    <div id="currentMode" class="mb-4">
-                        <!-- Se llenará con JavaScript -->
+                            <!-- Category Filter -->
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold text-primary mb-2">
+                                    <i class="bi bi-funnel me-1"></i>Categoría
+                                </label>
+                                <select class="form-select" id="filterCategory">
+                                    <option value="">Todas las categorías</option>
+                                </select>
+                            </div>
+
+                            <!-- View Options -->
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold text-primary mb-2">
+                                    <i class="bi bi-layout-three-columns me-1"></i>Vista
+                                </label>
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="viewMode" id="gridView" checked>
+                                    <label class="btn btn-outline-primary" for="gridView" title="Vista en cuadrícula">
+                                        <i class="bi bi-grid"></i>
+                                    </label>
+                                    <input type="radio" class="btn-check" name="viewMode" id="listView">
+                                    <label class="btn btn-outline-primary" for="listView" title="Vista en lista">
+                                        <i class="bi bi-list-ul"></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Sort Options -->
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold text-primary mb-2">
+                                    <i class="bi bi-sort-down me-1"></i>Ordenar
+                                </label>
+                                <div class="dropdown w-100">
+                                    <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-sort-alpha-down me-1"></i>Orden
+                                    </button>
+                                    <ul class="dropdown-menu w-100">
+                                        <li><a class="dropdown-item" href="#" onclick="sortProducts('name')">
+                                            <i class="bi bi-sort-alpha-down me-2"></i>Por nombre
+                                        </a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="sortProducts('category')">
+                                            <i class="bi bi-tags me-2"></i>Por categoría
+                                        </a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="sortProducts('brand')">
+                                            <i class="bi bi-building me-2"></i>Por marca
+                                        </a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#" onclick="sortProducts('featured')">
+                                            <i class="bi bi-star-fill me-2"></i>Destacados primero
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button type="button" class="btn btn-outline-info" onclick="showAllProducts()">
+                                            <i class="bi bi-eye me-1"></i>Ver todos
+                                        </button>
+                                        <button type="button" class="btn btn-outline-warning" onclick="showFeaturedProducts()">
+                                            <i class="bi bi-star me-1"></i>Solo destacados
+                                        </button>
+                                        <button type="button" class="btn btn-outline-success" onclick="refreshProducts()">
+                                            <i class="bi bi-arrow-clockwise me-1"></i>Actualizar
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center text-muted">
+                                        <small>
+                                            <i class="bi bi-info-circle me-1"></i>
+                                            Haz clic en una tarjeta para ver más opciones
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <h6 class="fw-bold mb-3">Acceso Directo:</h6>
-                    <div class="d-grid gap-2">
-                        <a href="catalogo.html" class="btn btn-outline-primary">
-                            <i class="bi bi-gear me-2"></i>Catálogo de Desarrollo
-                            <span class="badge badge-dev ms-2">EJEMPLO</span>
-                        </a>
-                        <a href="catalogo-temporal.html" class="btn btn-outline-danger">
-                            <i class="bi bi-clock me-2"></i>Página Temporal
-                            <span class="badge badge-prod ms-2">PÚBLICO</span>
-                        </a>
+                <!-- Products Grid Section -->
+                <div class="card">
+                    <div class="card-body p-0">
+                        <!-- Loading State -->
+                        <div class="loading-spinner text-center py-5" id="loadingProducts" style="display: none;">
+                            <div class="spinner-border text-primary mb-3" role="status">
+                                <span class="visually-hidden">Cargando productos...</span>
+                            </div>
+                            <h6 class="text-muted">Cargando productos...</h6>
+                            <small class="text-muted">Por favor espera un momento</small>
+                        </div>
+                        
+                        <!-- Products Container -->
+                        <div id="productsContainer" class="p-4">
+                            <div id="productsList" class="row g-4">
+                                <!-- Products will be loaded here dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="emptyState" class="text-center py-5" style="display: none;">
+                            <div class="mb-4">
+                                <i class="bi bi-inbox display-1 text-muted"></i>
+                            </div>
+                            <h5 class="text-muted mb-2">No hay productos para mostrar</h5>
+                            <p class="text-muted mb-4">
+                                Intenta ajustar los filtros de búsqueda o <br>
+                                agrega nuevos productos desde la pestaña correspondiente
+                            </p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <button class="btn btn-outline-primary" onclick="clearAllFilters()">
+                                    <i class="bi bi-funnel-fill me-1"></i>Limpiar filtros
+                                </button>
+                                <button class="btn btn-primary" onclick="switchToAddProduct()">
+                                    <i class="bi bi-plus-circle me-1"></i>Agregar producto
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
 
-                    <hr>
+            <!-- Add Product Panel -->
+            <div class="tab-pane fade" id="add-product-panel" role="tabpanel">
+                <div class="form-section">
+                    <h5><i class="bi bi-plus-circle me-2"></i>Agregar Nuevo Producto</h5>
+                    <form id="addProductForm">
+                        <div class="row">
+                            <!-- Basic Information -->
+                            <div class="col-md-6">
+                                <h6 class="fw-bold mb-3 text-primary">Información Básica</h6>
+                                
+                                <div class="mb-3">
+                                    <label for="productId" class="form-label">ID del Producto *</label>
+                                    <input type="text" class="form-control" id="productId" required>
+                                    <div class="form-text">Formato recomendado: XXX-001</div>
+                                </div>
 
-                    <h6 class="fw-bold mb-3">Configuración Rápida:</h6>
-                    <div class="alert alert-info">
-                        <p class="mb-2"><strong>Para cambiar el modo:</strong></p>
-                        <ol class="mb-0">
-                            <li>Editar <code>js/catalog-config.js</code></li>
-                            <li>Cambiar <code>mode: 'production'</code> o <code>mode: 'development'</code></li>
-                            <li>Recargar las páginas</li>
-                        </ol>
-                    </div>
+                                <div class="mb-3">
+                                    <label for="productName" class="form-label">Nombre del Producto *</label>
+                                    <input type="text" class="form-control" id="productName" required>
+                                </div>
 
-                    <div class="text-center mt-4">
-                        <a href="index.html" class="btn btn-primary">
-                            <i class="bi bi-house me-2"></i>Ir a Página Principal
-                        </a>
+                                <div class="mb-3">
+                                    <label for="productCategory" class="form-label">Categoría *</label>
+                                    <select class="form-select" id="productCategory" required>
+                                        <option value="">Seleccionar categoría</option>
+                                        <option value="Válvulas">Válvulas</option>
+                                        <option value="Bombas">Bombas</option>
+                                        <option value="Monitores">Monitores</option>
+                                        <option value="Equipos">Equipos</option>
+                                        <option value="Accesorios">Accesorios</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productBrand" class="form-label">Marca *</label>
+                                    <input type="text" class="form-control" id="productBrand" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productModel" class="form-label">Modelo</label>
+                                    <input type="text" class="form-control" id="productModel">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productCompatibility" class="form-label">Compatibilidad</label>
+                                    <textarea class="form-control" id="productCompatibility" rows="3" placeholder="Describe con qué equipos es compatible..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Description and Features -->
+                            <div class="col-md-6">
+                                <h6 class="fw-bold mb-3 text-primary">Descripción y Características</h6>
+                                
+                                <div class="mb-3">
+                                    <label for="productDescription" class="form-label">Descripción *</label>
+                                    <textarea class="form-control" id="productDescription" rows="4" required placeholder="Descripción detallada del producto..."></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productFeatures" class="form-label">Características Principales</label>
+                                    <textarea class="form-control" id="productFeatures" rows="4" placeholder="Una característica por línea..."></textarea>
+                                    <div class="form-text">Escribe una característica por línea</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productSpecifications" class="form-label">Especificaciones Técnicas</label>
+                                    <textarea class="form-control" id="productSpecifications" rows="4" placeholder="Especificación: Valor
+Otra especificación: Otro valor"></textarea>
+                                    <div class="form-text">Formato: "Especificación: Valor" (una por línea)</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productImages" class="form-label">Rutas de Imágenes</label>
+                                    <textarea class="form-control" id="productImages" rows="3" placeholder="assets/images/products/ID/imagen1.jpg
+assets/images/products/ID/imagen2.jpg"></textarea>
+                                    <div class="form-text">Una ruta por línea. Las imágenes deben estar en assets/images/products/[ID]/</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="productFeatured">
+                                        <label class="form-check-label" for="productFeatured">
+                                            Producto Destacado
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary me-2" id="clearForm">
+                                <i class="bi bi-x-circle me-1"></i>Limpiar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle me-1"></i>Agregar Producto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Settings Panel -->
+            <div class="tab-pane fade" id="settings-panel" role="tabpanel">
+                <div class="form-section">
+                    <h5><i class="bi bi-gear me-2"></i>Configuración del Sistema</h5>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold mb-3">Estado del Catálogo</h6>
+                            <div id="currentMode">
+                                <!-- Se llenará con JavaScript -->
+                            </div>
+
+                            <h6 class="fw-bold mb-3 mt-4">Acciones del Sistema</h6>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-outline-primary" id="exportData">
+                                    <i class="bi bi-download me-2"></i>Exportar Base de Datos
+                                </button>
+                                <button type="button" class="btn btn-outline-success" id="importData">
+                                    <i class="bi bi-upload me-2"></i>Importar Base de Datos
+                                </button>
+                                <input type="file" id="importFile" accept=".json" style="display: none;">
+                                <button type="button" class="btn btn-outline-warning" id="validateData">
+                                    <i class="bi bi-shield-check me-2"></i>Validar Integridad
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h6 class="fw-bold mb-3">Acceso Directo</h6>
+                            <div class="d-grid gap-2">
+                                <a href="index.html" class="btn btn-primary">
+                                    <i class="bi bi-house me-2"></i>Página Principal
+                                </a>
+                                <a href="catalogo.html" class="btn btn-outline-primary">
+                                    <i class="bi bi-gear me-2"></i>Catálogo de Desarrollo
+                                    <span class="badge badge-dev ms-2">EJEMPLO</span>
+                                </a>
+                                <a href="catalogo-temporal.html" class="btn btn-outline-danger">
+                                    <i class="bi bi-clock me-2"></i>Página Temporal
+                                    <span class="badge badge-prod ms-2">PÚBLICO</span>
+                                </a>
+                            </div>
+
+                            <div class="alert alert-info mt-4">
+                                <h6><i class="bi bi-info-circle me-2"></i>Configuración Rápida</h6>
+                                <p class="mb-2"><strong>Para cambiar el modo:</strong></p>
+                                <ol class="mb-0">
+                                    <li>Editar <code>js/catalog-config.js</code></li>
+                                    <li>Cambiar <code>mode: 'production'</code> o <code>mode: 'development'</code></li>
+                                    <li>Recargar las páginas</li>
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-pencil me-2"></i>Editar Producto
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <!-- Same form structure as add product but with edit prefix -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="fw-bold mb-3 text-primary">Información Básica</h6>
+                                
+                                <div class="mb-3">
+                                    <label for="editProductId" class="form-label">ID del Producto *</label>
+                                    <input type="text" class="form-control" id="editProductId" readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editProductName" class="form-label">Nombre del Producto *</label>
+                                    <input type="text" class="form-control" id="editProductName" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editProductCategory" class="form-label">Categoría *</label>
+                                    <select class="form-select" id="editProductCategory" required>
+                                        <option value="">Seleccionar categoría</option>
+                                        <option value="Válvulas">Válvulas</option>
+                                        <option value="Bombas">Bombas</option>
+                                        <option value="Monitores">Monitores</option>
+                                        <option value="Equipos">Equipos</option>
+                                        <option value="Accesorios">Accesorios</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editProductBrand" class="form-label">Marca *</label>
+                                    <input type="text" class="form-control" id="editProductBrand" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editProductModel" class="form-label">Modelo</label>
+                                    <input type="text" class="form-control" id="editProductModel">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editProductCompatibility" class="form-label">Compatibilidad</label>
+                                    <textarea class="form-control" id="editProductCompatibility" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h6 class="fw-bold mb-3 text-primary">Descripción y Características</h6>
+                                
+                                <div class="mb-3">
+                                    <label for="editProductDescription" class="form-label">Descripción *</label>
+                                    <textarea class="form-control" id="editProductDescription" rows="4" required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editProductFeatures" class="form-label">Características Principales</label>
+                                    <textarea class="form-control" id="editProductFeatures" rows="4"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editProductSpecifications" class="form-label">Especificaciones Técnicas</label>
+                                    <textarea class="form-control" id="editProductSpecifications" rows="4"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editProductImages" class="form-label">Rutas de Imágenes</label>
+                                    <textarea class="form-control" id="editProductImages" rows="3"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="editProductFeatured">
+                                        <label class="form-check-label" for="editProductFeatured">
+                                            Producto Destacado
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="saveProductChanges">
+                        <i class="bi bi-check-circle me-1"></i>Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/catalog-config.js"></script>
     <script>
+        // Global variables
+        let productsData = [];
+        let categoriesData = [];
+        let brandsData = [];
+        let currentEditingProduct = null;
+
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
+            initializeManager();
+            loadProducts();
+            setupEventListeners();
+        });
+
+        // Initialize manager components
+        function initializeManager() {
+            updateSystemStatus();
+            updateStats();
+        }
+
+        // Load products from JSON
+        async function loadProducts() {
+            try {
+                showLoading(true);
+                const response = await fetch('data/products.json');
+                if (!response.ok) throw new Error('Error al cargar productos');
+                
+                const data = await response.json();
+                
+                // Check if data has products array or is directly an array
+                if (data.products && Array.isArray(data.products)) {
+                    productsData = data.products;
+                    categoriesData = data.categories || [];
+                    brandsData = data.brands || [];
+                } else if (Array.isArray(data)) {
+                    productsData = data;
+                } else {
+                    throw new Error('Formato de datos incorrecto: se esperaba un array de productos');
+                }
+                
+                updateStats();
+                updateCategoryFilter();
+                displayProducts();
+                showAlert('Productos cargados exitosamente', 'success');
+            } catch (error) {
+                console.error('Error loading products:', error);
+                showAlert('Error al cargar productos: ' + error.message, 'danger');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Display products in the grid
+        function displayProducts(filteredProducts = null) {
+            const products = filteredProducts || productsData;
+            const container = document.getElementById('productsList');
+            const emptyState = document.getElementById('emptyState');
+            const productsContainer = document.getElementById('productsContainer');
+            
+            // Update product count
+            updateProductCount(products.length);
+            
+            if (products.length === 0) {
+                productsContainer.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            productsContainer.style.display = 'block';
+            emptyState.style.display = 'none';
+
+            container.innerHTML = products.map(product => {
+                // Get display values with fallbacks
+                const productCode = product.code || product.id;
+                const productName = product.name || 'Sin nombre';
+                const productCategory = product.category || 'Sin categoría';
+                const productBrand = product.brand || 'Sin marca';
+                const productDescription = product.fullDescription || product.description || product.shortDescription || 'Sin descripción';
+                
+                return `
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                        <div class="card product-card h-100 border-0 shadow-sm">
+                            <div class="card-body p-3">
+                                <div class="d-flex flex-column h-100">
+                                    <!-- Product Header -->
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="me-3 flex-shrink-0">
+                                            ${getProductImageHtml(product, 'product-image')}
+                                        </div>
+                                        <div class="flex-grow-1 min-w-0">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <h6 class="card-title mb-1 text-truncate fw-bold" title="${productName}">${productName}</h6>
+                                                <div class="product-actions ms-2 flex-shrink-0">
+                                                    <div class="btn-group btn-group-sm" role="group">
+                                                        <button class="btn btn-outline-primary btn-action" 
+                                                                onclick="editProduct('${productCode}')" title="Editar producto">
+                                                            <i class="bi bi-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-outline-danger btn-action" 
+                                                                onclick="deleteProduct('${productCode}')" title="Eliminar producto">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <span class="badge bg-primary category-badge">${productCategory}</span>
+                                                ${product.featured ? '<span class="badge bg-warning text-dark ms-1">Destacado</span>' : ''}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Product Info -->
+                                    <div class="flex-grow-1">
+                                        <div class="mb-3">
+                                            <div class="row g-2 text-muted small">
+                                                <div class="col-6">
+                                                    <strong>Código:</strong><br>
+                                                    <span class="text-primary">${productCode}</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <strong>Marca:</strong><br>
+                                                    ${productBrand}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="small text-muted mb-0 flex-grow-1" 
+                                           style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;" 
+                                           title="${productDescription}">
+                                            ${productDescription}
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- Product Actions Footer -->
+                                    <div class="mt-3 pt-3 border-top">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <button class="btn btn-sm btn-outline-info flex-grow-1 me-2" 
+                                                    onclick="viewProductDetails('${productCode}')" title="Ver detalles completos">
+                                                <i class="bi bi-eye me-1"></i>Ver detalles
+                                            </button>
+                                            <div class="text-end">
+                                                <small class="text-muted d-flex align-items-center">
+                                                    <i class="bi bi-images me-1"></i>
+                                                    ${getImageCount(product.images)}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Get product image HTML
+        function getProductImageHtml(product, className = '') {
+            let imageUrl = null;
+            
+            // Check different image formats
+            if (product.images) {
+                if (typeof product.images === 'object' && product.images.main) {
+                    // New format: {main: "url", gallery: [...]}
+                    imageUrl = product.images.main;
+                } else if (Array.isArray(product.images) && product.images.length > 0) {
+                    // Old format: ["url1", "url2", ...]
+                    imageUrl = product.images[0];
+                }
+            }
+            
+            if (imageUrl) {
+                // Normalize path separators
+                imageUrl = imageUrl.replace(/\\/g, '/');
+                return `<img src="${imageUrl}" alt="${product.name}" class="${className}" onerror="this.src='assets/images/placeholder.jpg'">`;
+            }
+            
+            return `<div class="${className} bg-light d-flex align-items-center justify-content-center">
+                        <i class="bi bi-image text-muted"></i>
+                    </div>`;
+        }
+
+        // Truncate text helper
+        function truncateText(text, maxLength) {
+            return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+        }
+
+        // Get image count helper
+        function getImageCount(images) {
+            if (!images) return 0;
+            if (typeof images === 'object' && images.gallery) {
+                return images.gallery.length + (images.main ? 1 : 0);
+            } else if (Array.isArray(images)) {
+                return images.length;
+            }
+            return 0;
+        }
+
+        // View product details
+        function viewProductDetails(productCode) {
+            const product = productsData.find(p => (p.code || p.id) == productCode);
+            if (!product) {
+                showAlert('Producto no encontrado', 'danger');
+                return;
+            }
+
+            // Create a simple modal with product details
+            const detailsHtml = `
+                <div class="modal fade" id="productDetailsModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="bi bi-info-circle me-2"></i>${product.name}
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        ${getProductImageHtml(product, 'img-fluid rounded')}
+                                        <div class="mt-2">
+                                            <small class="text-muted">
+                                                <strong>Imágenes:</strong> ${getImageCount(product.images)}
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h6>Información Básica</h6>
+                                        <p><strong>Código:</strong> ${product.code || product.id}</p>
+                                        <p><strong>Categoría:</strong> ${product.category}</p>
+                                        <p><strong>Marca:</strong> ${product.brand}</p>
+                                        ${product.model ? `<p><strong>Modelo:</strong> ${product.model}</p>` : ''}
+                                        
+                                        <h6 class="mt-3">Descripción</h6>
+                                        <p>${product.fullDescription || product.description || product.shortDescription || 'Sin descripción'}</p>
+                                        
+                                        ${product.specifications ? `
+                                            <h6 class="mt-3">Especificaciones</h6>
+                                            <ul class="list-unstyled">
+                                                ${Object.entries(product.specifications).map(([key, value]) => `
+                                                    <li><strong>${key}:</strong> ${value}</li>
+                                                `).join('')}
+                                            </ul>
+                                        ` : ''}
+                                        
+                                        ${product.compatibility ? `
+                                            <h6 class="mt-3">Compatibilidad</h6>
+                                            <p>${Array.isArray(product.compatibility) ? product.compatibility.join(', ') : product.compatibility}</p>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" onclick="editProduct('${productCode}')" data-bs-dismiss="modal">
+                                    <i class="bi bi-pencil me-1"></i>Editar Producto
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            const existingModal = document.getElementById('productDetailsModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Add modal to body and show
+            document.body.insertAdjacentHTML('beforeend', detailsHtml);
+            const modal = new bootstrap.Modal(document.getElementById('productDetailsModal'));
+            modal.show();
+
+            // Clean up when modal is hidden
+            document.getElementById('productDetailsModal').addEventListener('hidden.bs.modal', function() {
+                this.remove();
+            });
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('totalProducts').textContent = productsData.length;
+            
+            const categories = [...new Set(productsData.map(p => p.category))];
+            document.getElementById('totalCategories').textContent = categories.length;
+            
+            const totalImages = productsData.reduce((total, product) => {
+                if (product.images) {
+                    if (typeof product.images === 'object' && product.images.gallery) {
+                        // New format: count gallery images
+                        return total + (product.images.gallery ? product.images.gallery.length : 0);
+                    } else if (Array.isArray(product.images)) {
+                        // Old format: count array length
+                        return total + product.images.length;
+                    }
+                }
+                return total;
+            }, 0);
+            document.getElementById('totalImages').textContent = totalImages;
+        }
+
+        // Update category filter
+        function updateCategoryFilter() {
+            const filterSelect = document.getElementById('filterCategory');
+            
+            // Use categories from metadata if available, otherwise extract from products
+            let categories = [];
+            if (categoriesData.length > 0) {
+                categories = categoriesData.map(cat => ({ id: cat.id, name: cat.name }));
+            } else {
+                const categoryIds = [...new Set(productsData.map(p => p.category))];
+                categories = categoryIds.map(id => ({ id: id, name: id }));
+            }
+            
+            filterSelect.innerHTML = '<option value="">Todas las categorías</option>' +
+                categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join('');
+        }
+
+        // Update system status
+        function updateSystemStatus() {
             const currentModeDiv = document.getElementById('currentMode');
             
             if (catalogConfig.isProduction()) {
@@ -89,7 +934,446 @@
                     </div>
                 `;
             }
-        });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('searchProducts').addEventListener('input', filterProducts);
+            document.getElementById('filterCategory').addEventListener('change', filterProducts);
+            document.getElementById('clearSearch').addEventListener('click', clearSearch);
+
+            // Add product form
+            document.getElementById('addProductForm').addEventListener('submit', handleAddProduct);
+            document.getElementById('clearForm').addEventListener('click', clearAddProductForm);
+
+            // Edit product form
+            document.getElementById('saveProductChanges').addEventListener('click', handleSaveProductChanges);
+
+            // Settings actions
+            document.getElementById('exportData').addEventListener('click', exportData);
+            document.getElementById('importData').addEventListener('click', () => {
+                document.getElementById('importFile').click();
+            });
+            document.getElementById('importFile').addEventListener('change', importData);
+            document.getElementById('validateData').addEventListener('click', validateData);
+        }
+
+        // Filter products
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchProducts').value.toLowerCase();
+            const selectedCategory = document.getElementById('filterCategory').value;
+
+            const filtered = productsData.filter(product => {
+                const productName = product.name || '';
+                const productBrand = product.brand || '';
+                const productDescription = product.fullDescription || product.description || product.shortDescription || '';
+                const productCode = product.code || product.id || '';
+                const productCategory = product.category || '';
+
+                const matchesSearch = !searchTerm || 
+                    productName.toLowerCase().includes(searchTerm) ||
+                    productBrand.toLowerCase().includes(searchTerm) ||
+                    productDescription.toLowerCase().includes(searchTerm) ||
+                    productCode.toString().toLowerCase().includes(searchTerm);
+
+                const matchesCategory = !selectedCategory || productCategory === selectedCategory;
+
+                return matchesSearch && matchesCategory;
+            });
+
+            displayProducts(filtered);
+            updateProductCount(filtered.length);
+        }
+
+        // Clear search
+        function clearSearch() {
+            document.getElementById('searchProducts').value = '';
+            document.getElementById('filterCategory').value = '';
+            displayProducts();
+            updateProductCount(productsData.length);
+        }
+
+        // Update product count
+        function updateProductCount(count) {
+            document.getElementById('productCount').textContent = count;
+        }
+
+        // Sort products
+        function sortProducts(criteria) {
+            let sortedProducts = [...productsData];
+            
+            switch(criteria) {
+                case 'name':
+                    sortedProducts.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+                    break;
+                case 'category':
+                    sortedProducts.sort((a, b) => (a.category || '').localeCompare(b.category || ''));
+                    break;
+                case 'brand':
+                    sortedProducts.sort((a, b) => (a.brand || '').localeCompare(b.brand || ''));
+                    break;
+                case 'featured':
+                    sortedProducts.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+                    break;
+            }
+            
+            displayProducts(sortedProducts);
+            showAlert(`Productos ordenados por ${criteria}`, 'info');
+        }
+
+        // Handle add product
+        function handleAddProduct(event) {
+            event.preventDefault();
+            
+            try {
+                const formData = getFormData('add');
+                
+                // Validate required fields
+                if (!formData.id || !formData.name || !formData.category || !formData.brand || !formData.description) {
+                    throw new Error('Por favor completa todos los campos obligatorios');
+                }
+
+                // Check if ID already exists
+                if (productsData.find(p => p.id === formData.id)) {
+                    throw new Error('Ya existe un producto con este ID');
+                }
+
+                // Add product to array
+                productsData.push(formData);
+                
+                // Update display
+                updateStats();
+                updateCategoryFilter();
+                displayProducts();
+                clearAddProductForm();
+                
+                showAlert('Producto agregado exitosamente', 'success');
+                
+                // Switch to products tab
+                document.getElementById('products-tab').click();
+                
+            } catch (error) {
+                showAlert('Error al agregar producto: ' + error.message, 'danger');
+            }
+        }
+
+        // Get form data
+        function getFormData(prefix) {
+            const getId = (id) => document.getElementById(prefix + id);
+            
+            const featuresText = getId('ProductFeatures').value;
+            const features = featuresText ? featuresText.split('\n').filter(f => f.trim()) : [];
+            
+            const specsText = getId('ProductSpecifications').value;
+            const specifications = {};
+            if (specsText) {
+                specsText.split('\n').forEach(line => {
+                    const [key, ...valueParts] = line.split(':');
+                    if (key && valueParts.length > 0) {
+                        specifications[key.trim()] = valueParts.join(':').trim();
+                    }
+                });
+            }
+
+            const imagesText = getId('ProductImages').value;
+            const images = imagesText ? imagesText.split('\n').filter(img => img.trim()) : [];
+
+            return {
+                id: getId('ProductId').value,
+                name: getId('ProductName').value,
+                category: getId('ProductCategory').value,
+                brand: getId('ProductBrand').value,
+                model: getId('ProductModel').value || '',
+                description: getId('ProductDescription').value,
+                features: features,
+                specifications: specifications,
+                compatibility: getId('ProductCompatibility').value || '',
+                images: images,
+                featured: getId('ProductFeatured').checked
+            };
+        }
+
+        // Clear add product form
+        function clearAddProductForm() {
+            document.getElementById('addProductForm').reset();
+        }
+
+        // Edit product
+        function editProduct(productCode) {
+            const product = productsData.find(p => (p.code || p.id) == productCode);
+            if (!product) {
+                showAlert('Producto no encontrado', 'danger');
+                return;
+            }
+
+            currentEditingProduct = productCode;
+            populateEditForm(product);
+            
+            const modal = new bootstrap.Modal(document.getElementById('editProductModal'));
+            modal.show();
+        }
+
+        // Populate edit form
+        function populateEditForm(product) {
+            document.getElementById('editProductId').value = product.code || product.id;
+            document.getElementById('editProductName').value = product.name || '';
+            document.getElementById('editProductCategory').value = product.category || '';
+            document.getElementById('editProductBrand').value = product.brand || '';
+            document.getElementById('editProductModel').value = product.model || '';
+            document.getElementById('editProductDescription').value = product.fullDescription || product.description || product.shortDescription || '';
+            document.getElementById('editProductCompatibility').value = Array.isArray(product.compatibility) ? product.compatibility.join(', ') : (product.compatibility || '');
+            document.getElementById('editProductFeatured').checked = product.featured || false;
+            
+            // Features - handle both array and object formats
+            let features = '';
+            if (product.features) {
+                if (Array.isArray(product.features)) {
+                    features = product.features.join('\n');
+                } else if (typeof product.features === 'object') {
+                    features = Object.values(product.features).join('\n');
+                }
+            }
+            document.getElementById('editProductFeatures').value = features;
+            
+            // Specifications
+            const specs = product.specifications ? 
+                Object.entries(product.specifications).map(([key, value]) => `${key}: ${value}`).join('\n') : '';
+            document.getElementById('editProductSpecifications').value = specs;
+            
+            // Images - handle both old and new formats
+            let images = '';
+            if (product.images) {
+                if (typeof product.images === 'object' && product.images.gallery) {
+                    // New format: extract URLs from gallery
+                    images = product.images.gallery.map(img => img.url || img).join('\n');
+                    if (product.images.main) {
+                        images = product.images.main + '\n' + images;
+                    }
+                } else if (Array.isArray(product.images)) {
+                    // Old format: simple array
+                    images = product.images.join('\n');
+                }
+            }
+            document.getElementById('editProductImages').value = images;
+        }
+
+        // Handle save product changes
+        function handleSaveProductChanges() {
+            try {
+                const formData = getFormData('edit');
+                
+                // Validate required fields
+                if (!formData.name || !formData.category || !formData.brand || !formData.description) {
+                    throw new Error('Por favor completa todos los campos obligatorios');
+                }
+
+                // Find and update product
+                const productIndex = productsData.findIndex(p => (p.code || p.id) == currentEditingProduct);
+                if (productIndex === -1) {
+                    throw new Error('Producto no encontrado');
+                }
+
+                productsData[productIndex] = formData;
+                
+                // Update display
+                updateStats();
+                displayProducts();
+                
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editProductModal'));
+                modal.hide();
+                
+                showAlert('Producto actualizado exitosamente', 'success');
+                
+            } catch (error) {
+                showAlert('Error al actualizar producto: ' + error.message, 'danger');
+            }
+        }
+
+        // Delete product
+        function deleteProduct(productCode) {
+            const product = productsData.find(p => (p.code || p.id) == productCode);
+            if (!product) {
+                showAlert('Producto no encontrado', 'danger');
+                return;
+            }
+
+            if (confirm(`¿Estás seguro de que quieres eliminar el producto "${product.name}"?`)) {
+                productsData = productsData.filter(p => (p.code || p.id) != productCode);
+                
+                updateStats();
+                updateCategoryFilter();
+                displayProducts();
+                
+                showAlert('Producto eliminado exitosamente', 'success');
+            }
+        }
+
+        // Export data
+        function exportData() {
+            try {
+                const dataStr = JSON.stringify(productsData, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(dataBlob);
+                link.download = `products_backup_${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                
+                showAlert('Base de datos exportada exitosamente', 'success');
+            } catch (error) {
+                showAlert('Error al exportar: ' + error.message, 'danger');
+            }
+        }
+
+        // Import data
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    
+                    if (!Array.isArray(importedData)) {
+                        throw new Error('El archivo debe contener un array de productos');
+                    }
+
+                    // Validate data structure
+                    for (const product of importedData) {
+                        if (!product.id || !product.name || !product.category) {
+                            throw new Error('Datos incompletos en el archivo');
+                        }
+                    }
+
+                    if (confirm(`¿Estás seguro de que quieres importar ${importedData.length} productos? Esto reemplazará todos los datos actuales.`)) {
+                        productsData = importedData;
+                        updateStats();
+                        updateCategoryFilter();
+                        displayProducts();
+                        showAlert('Datos importados exitosamente', 'success');
+                    }
+                } catch (error) {
+                    showAlert('Error al importar: ' + error.message, 'danger');
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset file input
+            event.target.value = '';
+        }
+
+        // Validate data integrity
+        function validateData() {
+            const issues = [];
+            
+            // Check for duplicate IDs
+            const ids = productsData.map(p => p.id);
+            const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
+            if (duplicateIds.length > 0) {
+                issues.push(`IDs duplicados: ${[...new Set(duplicateIds)].join(', ')}`);
+            }
+
+            // Check for missing required fields
+            productsData.forEach(product => {
+                if (!product.id) issues.push(`Producto sin ID: ${product.name || 'Sin nombre'}`);
+                if (!product.name) issues.push(`Producto sin nombre: ID ${product.id}`);
+                if (!product.category) issues.push(`Producto sin categoría: ${product.name} (${product.id})`);
+                if (!product.brand) issues.push(`Producto sin marca: ${product.name} (${product.id})`);
+            });
+
+            // Check for missing images
+            productsData.forEach(product => {
+                if (!product.images || product.images.length === 0) {
+                    issues.push(`Producto sin imágenes: ${product.name} (${product.id})`);
+                }
+            });
+
+            if (issues.length === 0) {
+                showAlert('✅ Validación exitosa: No se encontraron problemas en los datos', 'success');
+            } else {
+                showAlert(`⚠️ Se encontraron ${issues.length} problemas:<br>• ${issues.join('<br>• ')}`, 'warning');
+            }
+        }
+
+        // Show loading state
+        function showLoading(show) {
+            const spinner = document.getElementById('loadingProducts');
+            const productsContainer = document.getElementById('productsContainer');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (show) {
+                spinner.style.display = 'block';
+                productsContainer.style.display = 'none';
+                emptyState.style.display = 'none';
+            } else {
+                spinner.style.display = 'none';
+                // displayProducts will handle showing the right container
+            }
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            document.getElementById('searchProducts').value = '';
+            document.getElementById('filterCategory').value = '';
+            displayProducts();
+            updateProductCount(productsData.length);
+            showAlert('Filtros limpiados', 'info');
+        }
+
+        // Show all products
+        function showAllProducts() {
+            clearAllFilters();
+            showAlert('Mostrando todos los productos', 'info');
+        }
+
+        // Show only featured products
+        function showFeaturedProducts() {
+            const featuredProducts = productsData.filter(product => product.featured);
+            displayProducts(featuredProducts);
+            updateProductCount(featuredProducts.length);
+            showAlert(`Mostrando ${featuredProducts.length} productos destacados`, 'info');
+        }
+
+        // Refresh products
+        function refreshProducts() {
+            showLoading(true);
+            setTimeout(() => {
+                loadProducts();
+                showAlert('Productos actualizados', 'success');
+            }, 500);
+        }
+
+        // Switch to add product tab
+        function switchToAddProduct() {
+            document.getElementById('add-product-tab').click();
+        }
+
+        // Show alert
+        function showAlert(message, type = 'info') {
+            const alertArea = document.getElementById('alertArea');
+            const alertId = 'alert-' + Date.now();
+            
+            const alertHtml = `
+                <div class="alert alert-${type} alert-dismissible fade show alert-custom" role="alert" id="${alertId}">
+                    <div>${message}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            
+            alertArea.insertAdjacentHTML('beforeend', alertHtml);
+            
+            // Auto dismiss after 5 seconds
+            setTimeout(() => {
+                const alertElement = document.getElementById(alertId);
+                if (alertElement) {
+                    const alert = bootstrap.Alert.getOrCreateInstance(alertElement);
+                    alert.close();
+                }
+            }, 5000);
+        }
     </script>
 </body>
 </html>
