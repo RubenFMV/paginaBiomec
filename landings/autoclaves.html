@@ -723,6 +723,34 @@
             if (typeof setupContactFormValidation === 'function') {
                 setupContactFormValidation();
             }
+            
+            // Configurar tracking de conversión para el formulario
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    // Prevenir envío por defecto para validación
+                    event.preventDefault();
+                    
+                    // Validar el formulario
+                    if (contactForm.checkValidity()) {
+                        // Registrar la conversión con Google Ads
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'conversion', {'send_to': 'AW-16613986381/aGQbCML478QZEM2glfI9'});
+                            console.log('Conversión registrada correctamente');
+                        }
+                        
+                        // Continuar con el envío del formulario después de un breve retraso
+                        // para asegurar que el evento de conversión se registre
+                        setTimeout(function() {
+                            contactForm.submit();
+                        }, 300);
+                    } else {
+                        // Marcar formulario como inválido para mostrar errores
+                        event.stopPropagation();
+                        contactForm.classList.add('was-validated');
+                    }
+                });
+            }
         });
     </script>
 </body>
