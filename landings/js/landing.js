@@ -151,6 +151,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create WhatsApp message
             const whatsappMessage = createWhatsAppMessage(data);
             
+            // Registrar conversión en Google Ads
+            if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-16613986381/Z9HJCOzrkbsZEM2glfI9',
+                    'value': 1.0,
+                    'currency': 'MXN'
+                });
+                console.log('Conversión de formulario landing registrada en Google Ads');
+            }
+            
             // Show success message
             showAlert('¡Formulario completado! Te redirigiremos a WhatsApp para enviar tu cotización.', 'success');
             

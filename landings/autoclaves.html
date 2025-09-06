@@ -735,7 +735,11 @@
                     if (contactForm.checkValidity()) {
                         // Registrar la conversión con Google Ads
                         if (typeof gtag === 'function') {
-                            gtag('event', 'conversion', {'send_to': 'AW-16613986381/aGQbCML478QZEM2glfI9'});
+                            gtag('event', 'conversion', {
+                                'send_to': 'AW-16613986381/Z9HJCOzrkbsZEM2glfI9',
+                                'value': 1.0,
+                                'currency': 'MXN'
+                            });
                             console.log('Conversión registrada correctamente');
                         }
                         

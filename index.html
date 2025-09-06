@@ -7,6 +7,16 @@
     <meta name="description" content="BIMEG ofrece refacciones biomédicas originales para máquinas de anestesia, esterilizadores y autoclaves. Servicio técnico especializado en CDMX, EdoMex, Hidalgo, Michoacán y Guerrero.">
     <meta name="keywords" content="refacciones biomédicas, máquinas anestesia, esterilizadores, autoclaves, servicio técnico biomédico, hospital, clínica, CDMX">
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16613986381"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-16613986381');
+    </script>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="assets/images/Logo_Bimeg_V3.jpeg">
     
@@ -761,6 +771,40 @@
     <script src="js/catalog-config.js"></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
+    
+    <!-- Código de conversión para el formulario de contacto -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Validar el formulario
+                    if (contactForm.checkValidity()) {
+                        // Registrar la conversión con Google Ads
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'conversion', {
+                                'send_to': 'AW-16613986381/Z9HJCOzrkbsZEM2glfI9',
+                                'value': 1.0,
+                                'currency': 'MXN'
+                            });
+                            console.log('Conversión de formulario principal registrada correctamente');
+                        }
+                        
+                        // Continuar con el envío del formulario después de un breve retraso
+                        setTimeout(function() {
+                            contactForm.submit();
+                        }, 300);
+                    } else {
+                        // Marcar formulario como inválido para mostrar errores
+                        event.stopPropagation();
+                        contactForm.classList.add('was-validated');
+                    }
+                });
+            }
+        });
+    </script>
     
     <!-- WhatsApp Button Enhancement -->
     <script>

@@ -473,6 +473,16 @@ document.addEventListener('DOMContentLoaded', function() {
             generateContactMathCaptcha();
             document.getElementById('contactFormStartTime').value = Date.now();
             
+            // Registrar conversión en Google Ads
+            if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-16613986381/Z9HJCOzrkbsZEM2glfI9',
+                    'value': 1.0,
+                    'currency': 'MXN'
+                });
+                console.log('Conversión registrada en Google Ads');
+            }
+            
             // Show success message
             showBootstrapAlert(
                 '¡Mensaje enviado exitosamente! 📧 Se ha registrado en nuestro CRM. Pronto nos pondremos en contacto contigo.',

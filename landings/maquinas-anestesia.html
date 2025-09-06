@@ -7,6 +7,16 @@
     <meta name="description" content="Servicios de mantenimiento preventivo, correctivo y refacciones originales para máquinas de anestesia. Técnicos certificados, calibración especializada y reparaciones con garantía en todo México.">
     <meta name="keywords" content="mantenimiento máquinas anestesia, servicio preventivo anestesia, celda de oxígeno, calibración vaporizadores, monitor de signos vitales, circuito paciente, refacciones originales anestesia, reparación máquinas anestesia">
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16613986381"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-16613986381');
+    </script>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="../assets/images/Logo_Bimeg_V3.jpeg">
     
@@ -351,6 +361,15 @@
                                                 portalId: "23618396",
                                                 formId: "b0c6f6ce-7a2e-486c-bcfa-e081ec82d9de",
                                                 onFormSubmit: function($form) {
+                                                    // Registrar la conversión con Google Ads
+                                                    if (typeof gtag === 'function') {
+                                                        gtag('event', 'conversion', {
+                                                            'send_to': 'AW-16613986381/Z9HJCOzrkbsZEM2glfI9',
+                                                            'value': 1.0,
+                                                            'currency': 'MXN'
+                                                        });
+                                                        console.log("Conversión registrada correctamente");
+                                                    }
                                                     console.log("Form submitted successfully");
                                                 }
                                             });
