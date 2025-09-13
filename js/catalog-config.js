@@ -4,7 +4,7 @@
 const catalogConfig = {
     // Cambiar a 'production' para mostrar la página temporal
     // Cambiar a 'development' para mostrar el catálogo de ejemplo
-    mode: 'production', // 'production' | 'development'
+    mode: 'development', // 'production' | 'development'
     
     // URLs de los catálogos
     urls: {

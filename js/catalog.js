@@ -877,7 +877,7 @@ function createImageGallery(product) {
                 <img src="${img.url}" 
                      alt="${img.alt || product.name}" 
                      class="img-thumbnail gallery-thumbnail ${index === 0 ? 'active' : ''}"
-                     style="cursor: pointer; width: 100%; height: 80px; object-fit: cover;"
+                     style="cursor: pointer; width: 100%; height: 80px; object-fit: contain; background-color: #f8f9fa;"
                      onclick="changeMainImage('${img.url}', '${img.alt || product.name}')"
                      onerror="this.style.display='none';">
             </div>
@@ -890,7 +890,7 @@ function createImageGallery(product) {
                          src="${mainImage}" 
                          alt="${product.name}" 
                          class="img-fluid rounded"
-                         style="width: 100%; height: 300px; object-fit: cover;"
+                         style="width: 100%; height: auto; max-height: 400px; object-fit: contain; background-color: #ffffff;"
                          onerror="this.style.display='none'; document.getElementById('fallbackIcon').style.display='flex';">
                     <div id="fallbackIcon" class="product-image category-${product.category}" 
                          style="height: 300px; display: none;">
