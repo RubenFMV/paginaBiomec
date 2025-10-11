@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0",
-    "lastUpdated": "2025-09-11",
-    "totalProducts": 15,
+    "lastUpdated": "2025-10-10",
+    "totalProducts": 18,
     "description": "Base de datos de productos BIMEG - Refacciones Biomédicas"
   },
   "categories": [
@@ -81,6 +81,11 @@
     {
       "id": "saps",
       "name": "SAPS",
+      "country": "México"
+    },
+    {
+      "id": "bhelius",
+      "name": "Bhelius",
       "country": "México"
     }
   ],
@@ -200,8 +205,8 @@
       "id": 15,
       "code": "AUT-002",
       "name": "Esterilizador de Vapor Autogenerado ES-02",
-      "shortDescription": "Esterilizador de vapor autogenerado, gabinete o empotrable, control digital automático, pantalla táctil.",
-      "fullDescription": "Esterilizador de vapor autogenerado modelo ES-02, marca Paileria Especializada. Gabinete o empotrable, con control digital automático y pantalla táctil. Ideal para hospitales que requieren alta seguridad, automatización y trazabilidad en procesos de esterilización.",
+      "shortDescription": "Esterilizador (autoclave) de vapor autogenerado, gabinete o empotrable, control digital automático, pantalla táctil.",
+      "fullDescription": "Esterilizador (autoclave)  de vapor autogenerado modelo ES-02, marca Paileria Especializada. Gabinete o empotrable, con control digital automático y pantalla táctil. Ideal para hospitales que requieren alta seguridad, automatización y trazabilidad en procesos de esterilización.",
       "category": "esterilizadores",
       "brand": "paileria especializada",
       "images": {
@@ -286,8 +291,8 @@
       "id": 16,
       "code": "AUT-003",
       "name": "Esterilizador de Vapor Autogenerado ES-66",
-      "shortDescription": "Esterilizador de vapor autogenerado, gabinete o empotrable, control digital automático, pantalla táctil.",
-      "fullDescription": "Esterilizador de vapor autogenerado modelo ES-66, marca Paileria Especializada. Gabinete o empotrable, con control digital automático y pantalla táctil. Ideal para hospitales y clínicas que requieren mayor capacidad y automatización en procesos de esterilización.",
+      "shortDescription": "Esterilizador (autoclave)  de vapor autogenerado, gabinete o empotrable, control digital automático, pantalla táctil.",
+      "fullDescription": "Esterilizador (autoclave)  de vapor autogenerado modelo ES-66, marca Paileria Especializada. Gabinete o empotrable, con control digital automático y pantalla táctil. Ideal para hospitales y clínicas que requieren mayor capacidad y automatización en procesos de esterilización.",
       "category": "esterilizadores",
       "brand": "paileria especializada",
       "images": {
@@ -530,6 +535,200 @@
       "onSale": false,
       "createdDate": "2025-09-13",
       "lastUpdated": "2025-09-13"
+    },
+    {
+      "id": 19,
+      "code": "INCUB-ERITREA",
+      "name": "Incubadora Bhelius Eritrea",
+      "shortDescription": "Incubadora neonatal con modos servocontrol de aire y piel, alarmas en español y capelo de alta visibilidad.",
+      "fullDescription": "Bhelius Eritrea es una incubadora diseñada para cuidados esenciales del recién nacido. Ofrece modos de operación servocontrolados (aire y piel), interfaz táctil a color con gestión de alarmas, humidificación pasiva sin abrir el capelo y un carro rodable con cajones y ruedas para máxima ergonomía. Construcción robusta y fácil de limpiar.",
+      "category": "neonatal",
+      "brand": "bhelius",
+      "images": {
+        "main": "assets\\images\\products\\INCUB-BHELIUS-01\\IncubadoraBhelius.png",
+        "gallery": [
+          {
+            "url": "assets\\images\\products\\INCUB-BHELIUS-01\\IncubadoraBhelius.png",
+            "alt": "Vista principal Incubadora Bhelius Eritrea",
+            "title": "Vista principal"
+          }
+        ],
+        "thumbnail": "assets\\images\\products\\INCUB-BHELIUS-01\\IncubadoraBhelius.png"
+      },
+      "price": {
+        "currency": "MXN",
+        "amount": 0,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Modos de operación": "Servocontrol de aire y Servocontrol de piel",
+        "Rango de temperatura aire": "20°C a 37°C (programación), 37°C a 39°C (extendido)",
+        "Resolución de temperatura": "0.1°C",
+        "Rango de temperatura piel": "34°C a 38°C",
+        "Interfaz de usuario": "Pantalla TFT/LCD a color con gestión de alarmas y bloqueo",
+        "Humedad": "Humidificación pasiva por arrastre con depósito rellenable sin abrir el capelo",
+        "Alarmas": "Múltiples alarmas visuales y auditivas en español",
+        "Habitáculo": "Capelo transparente con acrílicos sin dobleces, fácil de limpiar",
+        "Carro rodable": "Cajones y ruedas con freno",
+        "Dimensiones del equipo": "184 x 87.5 x 65 cm"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 1,
+        "leadTime": "Consultar disponibilidad",
+        "supplier": "Bhelius / Arroba Ingeniería"
+      },
+      "compatibility": [
+        "Unidades de cuidados intensivos neonatales",
+        "Salas de parto y expulsión",
+        "Áreas de pediatría"
+      ],
+      "documents": [],
+      "accessories": [
+        "Sonda/sensor de temperatura de piel del infante",
+        "Mangas para portillos de capelo",
+        "Soporte para líquidos y soluciones de dos ganchos",
+        "Sistema de reanimación neonatal (opcional)"
+      ],
+      "consumibles": [
+        "Sensor de temperatura de piel reusable",
+        "Colchón del infante",
+        "Colchón de gel",
+        "Parches adhesivos para sensor de temperatura",
+        "Protectores oculares para fototerapia"
+      ],
+      "tags": ["incubadora", "neonatal", "servocontrol", "bhelius"],
+      "featured": true,
+      "newProduct": true,
+      "onSale": false,
+      "createdDate": "2025-10-10",
+      "lastUpdated": "2025-10-10"
+    },
+    {
+      "id": 20,
+      "code": "CUNA-PIREA",
+      "name": "Cuna de Calor Radiante Bhelius Pirea",
+      "shortDescription": "Cuna radiante modular con modos precalentamiento, manual y servocontrolado; fototerapia y luz de examen.",
+      "fullDescription": "Bhelius Pirea es una cuna de calor radiante para cuidados intermedios y UCIN. Ofrece modos de operación (precalentamiento, manual y servocontrolado), pantalla táctil a color con gestión de alarmas, luz de examinación y fototerapia integradas. Diseño modular para fácil limpieza y mantenimiento, con construcción sólida y durable.",
+      "category": "neonatal",
+      "brand": "bhelius",
+      "images": {
+        "main": "assets\\images\\products\\CUNA-BHELIUS\\CunaCalorRadiante-Bhelius.png",
+        "gallery": [
+          {
+            "url": "assets\\images\\products\\CUNA-BHELIUS\\CunaCalorRadiante-Bhelius.png",
+            "alt": "Vista principal Cuna de Calor Radiante Bhelius Pirea",
+            "title": "Vista principal"
+          }
+        ],
+        "thumbnail": "assets\\images\\products\\CUNA-BHELIUS\\CunaCalorRadiante-Bhelius.png"
+      },
+      "price": {
+        "currency": "MXN",
+        "amount": 0,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Modos de operación": "Precalentamiento, Manual, Controlado por bebé (servocontrolado)",
+        "Rango de medición": "15°C a 45°C",
+        "Precisión": "0.1°C",
+        "Rango de programación": "34°C a 38°C",
+        "Potencia de calefactor": "0 a 100%",
+        "Interfaz de usuario": "Pantalla TFT/LCD a color Touchscreen con gestión de alarmas",
+        "Lámpara calefactora": "Enfoque continuo, emisión de calor uniforme",
+        "Luz de examinación": "LEDs blancos de alto rendimiento",
+        "Lámpara de fototerapia": "LEDs azules integrados de alta potencia",
+        "Dimensiones del equipo": "87 x 65 x 180 cm",
+        "Dimensiones de empaque": "102 x 72 x 134 cm"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 1,
+        "leadTime": "Consultar disponibilidad",
+        "supplier": "Bhelius / Arroba Ingeniería"
+      },
+      "compatibility": [
+        "UCIN",
+        "Salas de parto y expulsión",
+        "Áreas de pediatría"
+      ],
+      "documents": [],
+      "accessories": [
+        "Rieles o charola para monitor o instrumental",
+        "Soporte para líquidos y soluciones de dos ganchos",
+        "Manual de operación en español"
+      ],
+      "consumibles": [
+        "Sensor de temperatura de piel reusable",
+        "Colchón del infante",
+        "Colchón de gel",
+        "Protectores oculares para fototerapia"
+      ],
+      "tags": ["cuna radiante", "neonatal", "fototerapia", "bhelius"],
+      "featured": true,
+      "newProduct": true,
+      "onSale": false,
+      "createdDate": "2025-10-10",
+      "lastUpdated": "2025-10-10"
+    },
+    {
+      "id": 21,
+      "code": "FOTO-ACTEA",
+      "name": "Lámpara de Fototerapia Bhelius Actea",
+      "shortDescription": "Lámpara de fototerapia con 3 niveles de intensidad, luz de examinación y pedestal rodable silencioso.",
+      "fullDescription": "Bhelius Actea es una lámpara de fototerapia para disminuir la hiperbilirrubinemia en neonatos. Integra LEDs azules de alta potencia con tres niveles de intensidad, luz de examinación blanca con alto CRI y enfriamiento pasivo sin ventilador. Incluye cabezal de lámpara, pedestal rodable y opciones de radiómetro (NILA y NILA-CON). Diseño silencioso, limpio y durable.",
+      "category": "neonatal",
+      "brand": "bhelius",
+      "images": {
+        "main": "assets\\images\\products\\LAMPARA-BHELIUS\\LamparaFototerapia-Bhelius.png",
+        "gallery": [
+          {
+            "url": "assets\\images\\products\\LAMPARA-BHELIUS\\LamparaFototerapia-Bhelius.png",
+            "alt": "Vista principal Lámpara de Fototerapia Bhelius Actea",
+            "title": "Vista principal"
+          }
+        ],
+        "thumbnail": "assets\\images\\products\\LAMPARA-BHELIUS\\LamparaFototerapia-Bhelius.png"
+      },
+      "price": {
+        "currency": "MXN",
+        "amount": 0,
+        "showPrice": false,
+        "priceType": "cotizar"
+      },
+      "specifications": {
+        "Modos de iluminación": "Fototerapia, Luz de examinación",
+        "Niveles de fototerapia": "3 niveles ajustables",
+        "Enfriamiento": "Pasivo, sin ventilador (cero ruido, cero polvo)",
+        "Gabinete": "Cabezal de lámpara y pedestal rodable",
+        "Radiómetro (opcional)": "NILA / NILA-CON (con conectividad)",
+        "Consumibles": "Antifaz para fototerapia, Protector gonadal",
+        "Dimensiones del equipo": "72 x 98 x 15 cm"
+      },
+      "stock": {
+        "available": true,
+        "quantity": 1,
+        "leadTime": "Consultar disponibilidad",
+        "supplier": "Bhelius / Arroba Ingeniería"
+      },
+      "compatibility": ["UCIN", "Bacinete", "Cunas radiantes"],
+      "documents": [],
+      "accessories": [
+        "Radiómetro NILA (opcional)",
+        "Radiómetro NILA-CON con conectividad (opcional)"
+      ],
+      "consumibles": [
+        "Antifaz para fototerapia",
+        "Protector gonadal para fototerapia"
+      ],
+      "tags": ["fototerapia", "neonatal", "lámpara", "bhelius"],
+      "featured": true,
+      "newProduct": true,
+      "onSale": false,
+      "createdDate": "2025-10-10",
+      "lastUpdated": "2025-10-10"
     }
   ]
 }
