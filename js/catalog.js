@@ -1231,129 +1231,65 @@ function submitQuote() {
         return;
     }
     
-    // Preparar datos para HubSpot
-    const nameParts = name.split(' ');
-    const firstName = nameParts[0];
-    const lastName = nameParts.slice(1).join(' ') || '';
-    
-    const hubspotData = {
-        "fields": [
-            {
-                "name": "firstname",
-                "value": firstName
-            },
-            {
-                "name": "lastname", 
-                "value": lastName
-            },
-            {
-                "name": "email",
-                "value": email
-            },
-            {
-                "name": "phone",
-                "value": phone
-            },
-            {
-                "name": "company",
-                "value": formData.get('company') || 'No especificada'
-            },
-            {
-                "name": "producto_solicitado",
-                "value": formData.get('productName')
-            },
-            {
-                "name": "codigo_producto",
-                "value": formData.get('productCode')
-            },
-            {
-                "name": "cantidad_solicitada",
-                "value": parseInt(formData.get('quantity')) || 1
-            },
-            {
-                "name": "categoria_producto",
-                "value": formData.get('productCategory') || 'No especificada'
-            },
-            {
-                "name": "fuente_lead",
-                "value": "Catálogo Web - Cotización Validada"
-            },
-            {
-                "name": "message",
-                "value": formData.get('message') || ''
-            }
-        ],
-        "context": {
-            "pageUri": window.location.href,
-            "pageName": "Catálogo de Productos"
-        }
-    };
-    
-    // CONFIGURACIÓN HUBSPOT - IDs REALES DE BIMEG
-    const HUBSPOT_PORTAL_ID = "50431135";
-    const HUBSPOT_FORM_ID = "fb69ed57-fc12-40db-b754-2d60f1efaf62";
-    
-    // Enviar a HubSpot
-    const hubspotUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
-    
+    // Preparar FormData para Web3Forms (recoge todos los campos name= del form automáticamente)
+    const submitData = new FormData(form);
+    submitData.append('access_key', '7c074f2f-9cb7-4152-ae10-e63124304c73');
+    submitData.append('subject', 'Nueva cotización de catálogo - BIMEG');
+    submitData.append('fuente', 'Catálogo Web - Cotización');
+
     // Mostrar loading
     const submitBtn = document.querySelector('#quoteModal .btn-primary');
     const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<i class="bi bi-clock me-1"></i>Enviando...';
     submitBtn.disabled = true;
-    
-    fetch(hubspotUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(hubspotData)
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
+
+    // Enviar a Web3Forms
+    (async () => {
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: submitData
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Error en el envío');
+            }
+
+            console.log('✅ Cotización enviada exitosamente via Web3Forms:', data);
+
+            // Cerrar modal
+            const quoteModal = bootstrap.Modal.getInstance(document.getElementById('quoteModal'));
+            quoteModal.hide();
+
+            setTimeout(() => {
+                showBootstrapAlert(
+                    '¡Cotización enviada exitosamente! 📧 Pronto nos pondremos en contacto contigo.',
+                    'success',
+                    6000
+                );
+            }, 500);
+
+        } catch (error) {
+            console.error('❌ Error enviando cotización:', error);
+
+            const quoteModal = bootstrap.Modal.getInstance(document.getElementById('quoteModal'));
+            quoteModal.hide();
+
+            setTimeout(() => {
+                showBootstrapAlert(
+                    '⚠️ Hubo un problema al enviar la cotización. Por favor, intenta nuevamente o contáctanos directamente.',
+                    'danger',
+                    6000
+                );
+            }, 500);
+
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         }
-        throw new Error('Error en HubSpot');
-    })
-    .then(data => {
-        console.log('✅ Lead enviado a HubSpot exitosamente:', data);
-        
-        // Cerrar modal
-        const quoteModal = bootstrap.Modal.getInstance(document.getElementById('quoteModal'));
-        quoteModal.hide();
-        
-        // Mostrar confirmación con Bootstrap alert
-        setTimeout(() => {
-            showBootstrapAlert(
-                '¡Cotización enviada exitosamente! 📧 Se ha registrado en nuestro CRM. Pronto nos pondremos en contacto contigo.',
-                'success',
-                6000
-            );
-        }, 500);
-        
-    })
-    .catch(error => {
-        console.error('❌ Error enviando a HubSpot:', error);
-        
-        // Cerrar modal
-        const quoteModal = bootstrap.Modal.getInstance(document.getElementById('quoteModal'));
-        quoteModal.hide();
-        
-        // Mostrar error con Bootstrap alert
-        setTimeout(() => {
-            showBootstrapAlert(
-                '⚠️ Hubo un problema al enviar la cotización. Por favor, intenta nuevamente o contáctanos directamente.',
-                'danger',
-                6000
-            );
-        }, 500);
-        
-    })
-    .finally(() => {
-        // Restaurar botón
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    });
+    })();
 }
 
 // Función para cotizar vía WhatsApp

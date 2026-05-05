@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Contact form handling with HubSpot integration
+    // Contact form handling with Web3Forms integration
     const contactForm = document.querySelector('#contactForm');
     if (contactForm) {
         // Setup form validation and CAPTCHA when form loads
@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Submit contact form to HubSpot
+    // Submit contact form to Web3Forms
     function submitContactForm() {
         const form = document.getElementById('contactForm');
         const formData = new FormData(form);
@@ -377,135 +377,80 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Prepare data for HubSpot
-        const nameParts = name.split(' ');
-        const firstName = nameParts[0];
-        const lastName = nameParts.slice(1).join(' ') || '';
-        
-        // Map request type to Spanish
+        // Preparar FormData para Web3Forms (recoge todos los campos name= del HTML)
         const requestTypeMap = {
             'cotizacion': 'Cotización de refacciones',
             'servicio': 'Servicio técnico',
             'garantia': 'Consulta de garantía',
             'catalogo': 'Solicitar catálogo'
         };
-        
-        const hubspotData = {
-            "fields": [
-                {
-                    "name": "firstname",
-                    "value": firstName
-                },
-                {
-                    "name": "lastname", 
-                    "value": lastName
-                },
-                {
-                    "name": "email",
-                    "value": email
-                },
-                {
-                    "name": "phone",
-                    "value": phone
-                },
-                {
-                    "name": "company",
-                    "value": formData.get('company') || 'No especificada'
-                },
-                {
-                    "name": "tipo_solicitud",
-                    "value": requestTypeMap[requestType] || requestType
-                },
-                {
-                    "name": "equipo_marca_modelo",
-                    "value": formData.get('equipment') || 'No especificado'
-                },
-                {
-                    "name": "fuente_lead",
-                    "value": "Web Principal - Consulta General"
-                },
-                {
-                    "name": "message",
-                    "value": message
-                }
-            ],
-            "context": {
-                "pageUri": window.location.href,
-                "pageName": "Página Principal - Contacto"
-            }
-        };
-        
-        // HubSpot configuration
-        const HUBSPOT_PORTAL_ID = "50431135";
-        const HUBSPOT_FORM_ID = "fb69ed57-fc12-40db-b754-2d60f1efaf62";
-        const hubspotUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
-        
-        // Show loading state
+
+        const submitData = new FormData(form);
+        submitData.append('access_key', '7c074f2f-9cb7-4152-ae10-e63124304c73');
+        submitData.append('subject', 'Nuevo contacto desde Web Principal - BIMEG');
+        submitData.append('tipo_solicitud', requestTypeMap[requestType] || requestType);
+        submitData.append('fuente', 'Web Principal - Consulta General');
+
+        // Mostrar estado de carga
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="bi bi-clock me-1"></i>Enviando...';
         submitBtn.disabled = true;
-        
-        // Send to HubSpot
-        fetch(hubspotUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(hubspotData)
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Error en HubSpot');
-        })
-        .then(data => {
-            console.log('✅ Lead enviado a HubSpot exitosamente:', data);
-            
-            // Reset form
-            form.reset();
-            form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
-                el.classList.remove('is-valid', 'is-invalid');
-            });
-            
-            // Generate new CAPTCHA and reset timer
-            generateContactMathCaptcha();
-            document.getElementById('contactFormStartTime').value = Date.now();
-            
-            // Registrar conversión en Google Ads
-            if (typeof gtag === 'function') {
-                gtag('event', 'conversion', {
-                    'send_to': 'AW-16613986381/Z9HJCOzrkbsZEM2glfI9',
-                    'value': 1.0,
-                    'currency': 'MXN'
+
+        // Enviar a Web3Forms
+        (async () => {
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: submitData
                 });
-                console.log('Conversión registrada en Google Ads');
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Error en el envío');
+                }
+
+                console.log('✅ Mensaje enviado exitosamente via Web3Forms:', data);
+
+                // Limpiar formulario
+                form.reset();
+                form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+                    el.classList.remove('is-valid', 'is-invalid');
+                });
+
+                // Generar nuevo CAPTCHA y reiniciar timer
+                generateContactMathCaptcha();
+                document.getElementById('contactFormStartTime').value = Date.now();
+
+                // Registrar conversión en Google Ads
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-16613986381/Z9HJCOzrkbsZEM2glfI9',
+                        'value': 1.0,
+                        'currency': 'MXN'
+                    });
+                    console.log('Conversión registrada en Google Ads');
+                }
+
+                showBootstrapAlert(
+                    '¡Mensaje enviado exitosamente! 📧 Pronto nos pondremos en contacto contigo.',
+                    'success',
+                    6000
+                );
+
+            } catch (error) {
+                console.error('❌ Error enviando mensaje:', error);
+                showBootstrapAlert(
+                    '⚠️ Hubo un problema al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente.',
+                    'danger',
+                    6000
+                );
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
-            
-            // Show success message
-            showBootstrapAlert(
-                '¡Mensaje enviado exitosamente! 📧 Se ha registrado en nuestro CRM. Pronto nos pondremos en contacto contigo.',
-                'success',
-                6000
-            );
-            
-        })
-        .catch(error => {
-            console.error('❌ Error enviando a HubSpot:', error);
-            
-            showBootstrapAlert(
-                '⚠️ Hubo un problema al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente.',
-                'danger',
-                6000
-            );
-            
-        })
-        .finally(() => {
-            // Restore button
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        });
+        })();
     }
 
     // Enhanced Bootstrap alert function
